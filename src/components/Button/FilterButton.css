@@ -1,0 +1,32 @@
+.filterBaseButton {
+    width: 250px;
+    height: 45px;
+    border-radius: 5px;
+    text-align: center;
+    border: none;
+    font-size: 20px;
+    position: absolute;
+}
+
+.filterGreenButton {
+    background-color: #90c8c7;
+    color: #ebeded;
+}
+
+.filterGreenButton:hover {
+    background-color: #6d9898;
+}
+
+.arrow {
+    position: relative;
+    top: 16px;
+    left: 210px;
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+
+    border-top: 15px solid #ebeded;
+}
+
+}

@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&display=swap');
+
+/*////////////////////////
+    Table of Contents
+    1. Global Styles
+    2. Typography
+    3. Layout
+        3.1 Reusables
+        3.2 Other
+    4. Areas
+        4.1 Header
+        4.2 Introduction
+        etc.
+    5. Media Queries
+////////////////////////*/
+
+/* ------------------------------- 1. Global Styles -------------------------------- */
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+/* ------------------------------- 2. Typography ----------------------------------- */
+button {
+    font-family: "Cabin", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+}
+
+/* ------------------------------- 3. Layout --------------------------------------- */
+
+/*Red #e32f6f*/
+/*Green #90c8c7*/
+/*Grey #ebeded*/
+
+/*Menu*/
+/*MenuButton darkgrey #878989*/
+/*Logout softred #C15A6E*/
+
+/* --------------- 3.1 Reusables ----------------------- */
+
+/* --------------- 3.2 Other --------------------------- */
+
+/* ------------------------------- 4. Areas ---------------------------------------- */
+
+/* --------------- 4.1 Header ------------------------- */
+
+/* --------------- 4.2 Introduction ------------------- */
+
+/* ------------------------------- 5. Media Queries -------------------------------- */
