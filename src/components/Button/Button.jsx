@@ -1,8 +1,7 @@
 import './Button.css';
 
-import LogOutIcon from '../../assets/Icons/SVG/LogOutIcon.svg';
+function Button({buttonName, buttonStyle, buttonIcon, alt}) {
 
-function Button({buttonName, buttonStyle}) {
 return (
   <>
     <button
@@ -10,7 +9,7 @@ return (
             onClick=""
             className={buttonStyle}
         >
-        <img src={LogOutIcon} width="20" height="20" /> {buttonName}
+        <img src={buttonIcon} alt={alt}/> {buttonName}
     </button>
   </>
 );

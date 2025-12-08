@@ -4,13 +4,22 @@ import Button from "./components/Button/Button.jsx";
 import FilterButton from "./components/Button/FilterButton.jsx";
 import DropDownMenu from "./components/Button/DropDownMenu.jsx";
 
+import LogOutIcon from "./assets/Icons/SVG/LogOutIcon.svg";
+import ArrowDownIcon from "./assets/Icons/SVG/Arrowdown.svg";
+import TopMenu from "./components/Menu/TopMenu.jsx";
+
 function App() {
 
   return (
     <>
+        <nav>
+<TopMenu
+/>
+        </nav>
       <Button
       buttonName="Yes, delete"
       buttonStyle="baseButton greenButton"
+
       />
         <Button
             buttonName="Yes, delete"
@@ -21,6 +30,8 @@ function App() {
         <br/>
         <FilterButton
         buttonName="Filter"
+        buttonIcon={ArrowDownIcon}
+        alt="arrow icon"
         />
         <br/>
         <br/>
@@ -35,7 +46,11 @@ function App() {
         <br/>
         <Button
             buttonName="Logout"
-            buttonStyle="baseButton redButton"
+            buttonStyle="baseButton logOutButton"
+            buttonIcon={LogOutIcon}
+            alt="LogOut Icon"
+            iconWidth="20"
+            iconHeight="20"
         />
     </>
   )

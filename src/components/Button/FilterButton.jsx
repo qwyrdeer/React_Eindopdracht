@@ -1,6 +1,6 @@
 import './FilterButton.css';
 
-function FilterButton({buttonName}) {
+function FilterButton({buttonName, buttonIcon, alt}) {
     return (
         <>
             <div>
@@ -9,10 +9,8 @@ function FilterButton({buttonName}) {
                     onClick=""
                     className="filterBaseButton filterGreenButton"
                 >
-                {buttonName}
+                    <span className="buttonBox"><span className="buttonText">{buttonName}</span> <img src={buttonIcon} alt={alt} className="iconStyle"/></span>
                 </button>
-
-                <div className="arrow"></div>
             </div>
         </>
     );

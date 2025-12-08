@@ -1,0 +1,45 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+.topBar {
+    display: flex;
+    background-color: #8b8c8c;
+    flex-basis: 100%;
+    height: 50px;
+    position: relative;
+}
+
+.galacticLogo {
+    display: flex;
+    position: absolute;
+    width: 35px;
+    height: 50px;
+    left: 50%;
+    top: 22px;
+}
+
+.menuLeft {
+    display: flex;
+    border: #af2355 1px dashed;
+    justify-content: left;
+    flex-grow: 2;
+    align-items: center;
+    margin-left: 5px;
+}
+
+.menuRight {
+    display: flex;
+    border: #52af23 1px dashed;
+    justify-content: right;
+    align-items: center;
+    flex-grow: 2;
+    margin-right: 5px;
+}
+
+. buttonRight{
+    display: flex;
+    justify-content: right;
+}

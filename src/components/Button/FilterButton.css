@@ -3,9 +3,28 @@
     height: 45px;
     border-radius: 5px;
     text-align: center;
-    border: none;
     font-size: 20px;
-    position: absolute;
+    display: flex;
+    align-items: center;
+    border: none;
+    padding-right: 5px;
+}
+
+.buttonBox {
+    display: flex;
+    flex-basis: 100%;
+    justify-content: space-between;
+}
+
+.iconStyle {
+    display: flex;
+}
+
+.buttonText {
+    display: flex;
+    justify-content: center;
+    flex-grow: 2;
+    margin-left: 5px;
 }
 
 .filterGreenButton {
@@ -15,16 +34,4 @@
 
 .filterGreenButton:hover {
     background-color: #6d9898;
-}
-
-.arrow {
-    position: relative;
-    top: 16px;
-    left: 210px;
-    width: 0;
-    height: 0;
-    border-left: 10px solid transparent;
-    border-right: 10px solid transparent;
-
-    border-top: 15px solid #ebeded;
 }

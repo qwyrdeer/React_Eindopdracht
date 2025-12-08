@@ -4,15 +4,17 @@
 
 /*Menu*/
 /*MenuButton darkgrey #878989*/
-/*Logout softred #C15A6E*/
+/*Logout soft red #C15A6E*/
 
 .baseButton {
+    display: flex;
+    justify-content: center;
     width: 150px;
     height: 45px;
     border-radius: 5px;
-    text-align: center;
     border: none;
     font-size: 20px;
+    align-items: center;
 }
 
 /*RED BUTTONSTYLING*/
@@ -36,6 +38,17 @@
 }
 
 /*MENU BUTTONSTYLING*/
+.menuSmallButton {
+    background-color: #878989;
+    color: #90c8c7;
+    width: 50px;
+    height: 50px;
+}
+
+.menuSmallButton:hover {
+    background-color: #5b5c5c;
+}
+
 .menuButton {
     background-color: #878989;
     color: #90c8c7;
