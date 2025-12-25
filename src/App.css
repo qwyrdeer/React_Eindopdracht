@@ -22,13 +22,26 @@
 }
 
 /* ------------------------------- 2. Typography ----------------------------------- */
-button {
-    font-family: "Cabin", sans-serif;
-    font-weight: 600;
-    font-style: normal;
-}
+
 
 /* ------------------------------- 3. Layout --------------------------------------- */
+.appPage {
+    display: flex;
+    min-height: 100vh;
+}
+
+.mainPage {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.pageContent {
+    flex: 1;
+    padding: 1rem;
+    overflow: auto;
+}
+
 
 /*Red #e32f6f*/
 /*Green #90c8c7*/

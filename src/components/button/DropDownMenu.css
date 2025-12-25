@@ -1,0 +1,12 @@
+.baseMenu {
+    width: 150px;
+    height: 45px;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 20px;
+}
+
+.redButton {
+    background-color: #e32f6f;
+    color: #ebeded;
+}

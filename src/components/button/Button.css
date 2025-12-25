@@ -1,0 +1,143 @@
+/*Red #e32f6f*/
+/*Green #90c8c7*/
+/*Grey #ebeded*/
+
+/*Menu*/
+/*MenuButton darkgrey #878989*/
+/*Logout soft red #C15A6E*/
+
+button {
+    font-family: "Cabin", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+}
+
+.baseButton {
+    display: flex;
+    width: 150px;
+    height: 50px;
+    border-radius: 5px;
+    border: none;
+    font-size: 20px;
+    align-items: center;
+    cursor: pointer;
+}
+
+.menuBox {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    width: 100%;
+}
+
+.menuIcon {
+    display: flex;
+    margin-left: 12px;
+}
+
+.menuButtonName {
+    display: flex;
+    margin-left: 17px;
+}
+
+/*RED BUTTONSTYLING*/
+.redButton {
+    background-color: #e32f6f;
+    color: #ebeded;
+}
+
+.redButton:hover {
+    background-color: #af2355;
+}
+
+/*GREEN BUTTONSTYLING*/
+.greenButton {
+    background-color: #90c8c7;
+    color: #ebeded;
+}
+
+.greenButton:hover {
+    background-color: #6d9898;
+}
+
+/*MENU BUTTONSTYLING*/
+.menuSmallButton {
+    background-color: #878989;
+    color: #90c8c7;
+    width: 50px;
+    height: 50px;
+}
+
+.menuSmallButton:hover {
+    background-color: #5b5c5c;
+}
+
+.menuButton {
+    background-color: #878989;
+    color: #90c8c7;
+}
+
+.menuButton:hover {
+    background-color: #5b5c5c;
+}
+
+.menuTopButton {
+    display: flex;
+    width: 150px;
+    height: 50px;
+    border-radius: 5px;
+    border: none;
+    font-size: 20px;
+    align-items: center;
+    cursor: pointer;
+    align-content: center;
+    justify-content: center;
+    background-color: #878989;
+    color: #90c8c7;
+}
+
+.menuTopButton:hover {
+    background-color: #5b5c5c;
+}
+
+.menuSideButton {
+    width: 250px;
+    background-color: #878989;
+    color: #90c8c7;
+}
+
+.menuSideButton:hover {
+    background-color: #5b5c5c;
+}
+
+
+/*LOG OUT BUTTONSTYLING*/
+.logOutButton {
+    background-color: #C15A6E;
+    color: #ebeded;
+}
+
+.logOutButton:hover {
+    background-color: #8c4150;
+}
+
+.menuSmallManageButton {
+    background-color: #C15A6E;
+    color: #ebeded;
+    width: 50px;
+    height: 50px;
+}
+
+.menuSmallManageButton:hover {
+    background-color: #8c4150;
+}
+
+.menuManageButton {
+    width: 240px;
+    background-color: #C15A6E;
+    color: #ebeded;
+}
+
+.menuManageButton:hover {
+    background-color: #8c4150;
+}
