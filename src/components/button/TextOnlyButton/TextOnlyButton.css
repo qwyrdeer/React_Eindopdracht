@@ -23,3 +23,21 @@
 .baseTextonlyButton:hover {
     background-color: #5b5c5c;
 }
+
+.greenButton {
+    background-color: #90c8c7;
+    color: #ebeded;
+}
+
+.greenButton:hover {
+    background-color: #6d9898;
+}
+
+.redButton {
+    background-color: #e32f6f;
+    color: #ebeded;
+}
+
+.redButton:hover {
+    background-color: #af2355;
+}

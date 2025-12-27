@@ -11,7 +11,7 @@ ul li {
     flex-direction: column;
     justify-content: space-between;
     width: 60px;
-    height: 100vh;
+    height: 100%;
     align-items: center;
     background-color: #989A9A;
     transition: 0.5s all;

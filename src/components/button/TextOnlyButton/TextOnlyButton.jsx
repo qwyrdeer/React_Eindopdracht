@@ -7,7 +7,7 @@ function TextOnlyButton({buttonName, buttonStyle, onClick}) {
             <button
                 type="button"
                 onClick={onClick}
-                className={buttonStyle}
+                className={`baseTextonlyButton ${buttonStyle}`}
             >
                     <span className="menuTextonlyButtonName">
         {buttonName}

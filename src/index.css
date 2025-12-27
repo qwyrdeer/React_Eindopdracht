@@ -15,10 +15,71 @@
 /* ------------------------------- 1. Global Styles -------------------------------- */
 
 /* ------------------------------- 2. Typography ----------------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&display=swap');
+
+h1, h2, h3 {
+    font-family: "Cabin", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    color: #90c8c7;
+}
+
+p {
+    font-family: "Cabin", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    color: #90c8c7;
+}
+
+input {
+    font-family: "Cabin", sans-serif;
+    font-weight: 900;
+    font-style: normal;
+    border: 5px solid #90c8c7;
+    font-size: 16px;
+}
+
+label {
+    font-family: "Cabin", sans-serif;
+    font-weight: 900;
+    font-style: normal;
+    border: 5px solid #90c8c7;
+    font-size: 16px;
+    color: #6d9898;
+}
 
 /* ------------------------------- 3. Layout --------------------------------------- */
+body {
+    background-color: #DFE2E2;
+}
 
 /* --------------- 3.1 Reusables ----------------------- */
+
+input:focus {
+    outline: none;
+    border: 5px solid #6d9898;
+}
+
+::placeholder {
+    color: #6d9898;
+}
+
+a {
+    font-family: "Cabin", sans-serif;
+    font-weight: 600;
+    font-size: 17px;
+    color: #6d9898;
+    text-decoration: none;
+}
+
+a:hover, a:active  {
+    color: #90c8c7;
+}
+
+a:hover, .rerouteLink:active  {
+    color: #90c8c7;
+}
+
 
 /* --------------- 3.2 Other --------------------------- */
 

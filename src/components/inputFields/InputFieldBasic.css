@@ -1,0 +1,9 @@
+.baseInput {
+    display: flex;
+    width: 400px;
+    min-height: 50px;
+    border-radius: 3px;
+    padding-left: 10px;
+    color: #6d9898;
+    margin: 10px 0;
+}
