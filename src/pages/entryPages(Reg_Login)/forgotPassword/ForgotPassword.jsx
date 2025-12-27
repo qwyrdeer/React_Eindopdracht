@@ -24,6 +24,7 @@ function ForgotPassword() {
 
                         <div className="buttonBox">
                             <TextOnlyButton
+                                type="submit"
                                 buttonStyle="greenButton baseButton"
                                 buttonName="Send"/>
                         </div>

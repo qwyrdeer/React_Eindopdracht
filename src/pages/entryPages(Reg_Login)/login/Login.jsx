@@ -14,11 +14,13 @@ function Login() {
             typeField="text"
             placeholder="Username"
             inputStyle="baseInput"
+            id="username"
             />
                 <InputFieldBasic
                     typeField="password"
                     placeholder="Password"
                     inputStyle="baseInput"
+                    id="password"
                 />
 
                 <div className="rerouteLink">
@@ -28,6 +30,7 @@ function Login() {
 
                 <div className="buttonBox">
                 <TextOnlyButton
+                    type="submit"
                 buttonStyle="greenButton baseButton"
                 buttonName="Send"/>
                 </div>

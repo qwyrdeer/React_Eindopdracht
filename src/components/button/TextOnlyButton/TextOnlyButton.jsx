@@ -1,11 +1,11 @@
 import './TextOnlyButton.css';
 
-function TextOnlyButton({buttonName, buttonStyle, onClick}) {
+function TextOnlyButton({buttonName, buttonStyle, onClick, type}) {
 
     return (
         <>
             <button
-                type="button"
+                type={type}
                 onClick={onClick}
                 className={`baseTextonlyButton ${buttonStyle}`}
             >

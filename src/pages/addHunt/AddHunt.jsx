@@ -5,16 +5,29 @@ import {useState} from "react";
 
 function AddHunt() {
 
-    const [previewUrl, setPreviewUrl] = useState(null);
-    const [error, setError] = useState(null);
+    // Bestanden versturen, aanpassing toevoegen via EdHub: https://edhub.novi.nl/study/courses/610/content/18806
+
+    const [previewUrl, setPreviewUrl] = useState('');
+    const [error, setError] = useState('');
     const MAX_FILE_SIZE = 1_100_000;
 
+    const [namePokemon, setNamePokemon] = useState('');
+    const [nameGame, setNameGame] = useState('');
+    const [nameMethod, setNameMethod] = useState('');
+
+    function sendForm(e) {
+        e.preventDefault()
+        console.log({namePokemon, nameGame, nameMethod, previewUrl})
+
+    }
+
+
     const handleFileChange = (e) => {
-        setError(null);
+        setError('');
 
         if (e.target.files.length > 1) {
             setError("Only upload one GIF");
-            setPreviewUrl(null);
+            setPreviewUrl('');
             return;
         }
 
@@ -23,13 +36,13 @@ function AddHunt() {
 
         if (file.type !== "image/gif") {
             setError("Only GIF files are allowed");
-            setPreviewUrl(null);
+            setPreviewUrl('');
             return;
         }
 
         if (file.size > MAX_FILE_SIZE) {
             setError("Files may not be bigger than 1.1MB");
-            setPreviewUrl(null);
+            setPreviewUrl('');
             return;
         }
 
@@ -38,26 +51,26 @@ function AddHunt() {
 
     const handleDrop = (e) => {
         e.preventDefault();
-        setError(null);
+        setError('');
 
         const file = e.dataTransfer.files[0];
         if (!file) return;
 
         if (file.type !== "image/gif") {
             setError("Only GIF files are allowed");
-            setPreviewUrl(null);
+            setPreviewUrl('');
             return;
         }
 
         if (file.size > MAX_FILE_SIZE) {
             setError("Files may not be bigger than 1.1MB");
-            setPreviewUrl(null);
+            setPreviewUrl('');
             return;
         }
 
         if (e.dataTransfer.files.length > 1) {
             setError("Only upload one GIF");
-            setPreviewUrl(null);
+            setPreviewUrl('');
             return;
         }
 
@@ -69,27 +82,34 @@ function AddHunt() {
             <div className="fullPageBox">
                 <div className="contentBox">
                     <div className="pageTitle"><h1>ADD HUNT.</h1></div>
-                    <form action="">
+                    <form onSubmit={sendForm}>
                         <InputFieldBasic
                             typeField="text"
                             placeholder="Name Pokémon you are hunting"
                             inputStyle="baseInput"
+                            id="pokemon"
+                            setInputValue={setNamePokemon}
                         />
                         <InputFieldBasic
                             typeField="text"
                             placeholder="What game are you hunting in?"
                             inputStyle="baseInput"
+                            id="game"
+                            setInputValue={setNameGame}
                         />
                         <InputFieldBasic
                             typeField="text"
                             placeholder="What method are you hunting with?"
                             inputStyle="baseInput"
+                            id="method"
+                            setInputValue={setNameMethod}
                         />
 
                         <label
                             className="uploadBox"
                             onDragOver={(e) => e.preventDefault()}
                             onDrop={handleDrop}
+                            id="shiny-gif"
                         >
                             {previewUrl ? (
                                 <img src={previewUrl} alt="Preview GIF" />
@@ -101,6 +121,7 @@ function AddHunt() {
                                 type="file"
                                 accept="image/gif"
                                 onChange={handleFileChange}
+                                id="shiny-gif"
                                 hidden
                             />
                         </label>
@@ -109,6 +130,7 @@ function AddHunt() {
 
                         <div className="buttonBox addHuntButton">
                             <TextOnlyButton
+                                type="submit"
                                 buttonStyle="greenButton baseButton"
                                 buttonName="Add hunt"/>
                         </div>
