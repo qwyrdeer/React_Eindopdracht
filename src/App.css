@@ -22,21 +22,26 @@
 }
 
 /* ------------------------------- 2. Typography ----------------------------------- */
-button {
-    font-family: "Cabin", sans-serif;
-    font-weight: 600;
-    font-style: normal;
-}
+
 
 /* ------------------------------- 3. Layout --------------------------------------- */
+.appPage {
+    display: flex;
+    min-height: 100vh;
+}
 
-/*Red #e32f6f*/
-/*Green #90c8c7*/
-/*Grey #ebeded*/
+.mainPage {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
 
-/*Menu*/
-/*MenuButton darkgrey #878989*/
-/*Logout softred #C15A6E*/
+.pageContent {
+    flex: 1;
+    padding: 1rem;
+    overflow: auto;
+}
+
 
 /* --------------- 3.1 Reusables ----------------------- */
 
