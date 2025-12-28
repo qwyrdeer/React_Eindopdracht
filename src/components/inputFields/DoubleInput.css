@@ -1,0 +1,19 @@
+.doubleInputBox {
+    min-height: 50px;
+    padding-left: 10px;
+    color: #6d9898;
+    border: 5px solid #90c8c7;
+}
+
+.doubleInput1 {
+    width: 300px;
+    margin: 0;
+    border-radius: 5px 0 0 5px;
+}
+
+.doubleInput2 {
+    width: 100px;
+    margin: 0;
+    border-radius: 0 5px 5px 0;
+    border-left: 0;
+}

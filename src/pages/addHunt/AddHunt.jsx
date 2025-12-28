@@ -3,6 +3,7 @@ import InputFieldBasic from "../../components/inputFields/InputFieldBasic.jsx";
 import TextOnlyButton from "../../components/button/TextOnlyButton/TextOnlyButton.jsx";
 import {useState} from "react";
 import RadioButton from "../../components/button/RadioButton.jsx";
+import DoubleInput from "../../components/inputFields/DoubleInput.jsx";
 
 function AddHunt() {
 
@@ -13,8 +14,10 @@ function AddHunt() {
     const MAX_FILE_SIZE = 1_100_000;
 
     const [namePokemon, setNamePokemon] = useState('');
+    const [dexId, setDexId] = useState(0);
     const [nameGame, setNameGame] = useState('');
     const [nameMethod, setNameMethod] = useState('');
+    const [huntEncounters, setHuntEncounters] = useState(0);
 
     const [radioStatus, setRadioStatus] = useState('');
 
@@ -32,8 +35,14 @@ function AddHunt() {
 
     function sendForm(e) {
         e.preventDefault()
-        console.log({namePokemon, nameGame, nameMethod, previewUrl})
-
+        console.log({namePokemon, dexId, nameGame, nameMethod, previewUrl, radioStatus, huntEncounters})
+        // setNamePokemon('')
+        // setDexId(0)
+        // setNameGame('')
+        // setNameMethod('')
+        // setHuntEncounters(0)
+        // setRadioStatus('')
+        // setPreviewUrl('')
     }
 
 
@@ -98,12 +107,18 @@ function AddHunt() {
                 <div className="contentBox">
                     <div className="pageTitle"><h1>ADD HUNT.</h1></div>
                     <form onSubmit={sendForm}>
-                        <InputFieldBasic
-                            typeField="text"
-                            placeholder="Name Pokémon you are hunting"
-                            inputStyle="baseInput"
-                            id="pokemon"
-                            setInputValue={setNamePokemon}
+                        <DoubleInput
+                            typeField1="text"
+                            placeholder1="Name Pokémon you are hunting"
+                            id1="pokemon"
+                            setInputValue1={setNamePokemon}
+                            inputStyle="doubleInputBox"
+                            typeField2="number"
+                            placeholder2="# DexID"
+                            id2="dexId"
+                            maxNumber="1025"
+                            minNumber="1"
+                            setInputValue2={setDexId}
                         />
                         <InputFieldBasic
                             typeField="text"
@@ -145,6 +160,14 @@ function AddHunt() {
                                 handleClick={handleChangeFuture}
                             /></span>
                         </div>
+                        {radioStatus === "Past" ?
+                            <InputFieldBasic
+                                typeField="number"
+                                placeholder="Amount of encounters"
+                                inputStyle="baseInput"
+                                id="encounters"
+                                setInputValue={setHuntEncounters}
+                            /> : <p></p>}
                         <label
                             className="uploadBox"
                             onDragOver={(e) => e.preventDefault()}
