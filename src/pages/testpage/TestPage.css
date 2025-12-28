@@ -1,0 +1,81 @@
+.fullTestPageBox {
+    display: flex;
+    flex-direction: column;
+    max-width: 100%;
+    min-height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.pageTestTitle {
+    display: flex;
+    flex-grow: 1;
+}
+
+.messageBox {
+    display: flex;
+    position: absolute;
+    min-width: 100%;
+    min-height: 130px;
+    bottom: 1px;
+    right: 1px;
+    margin-bottom: 50px;
+    border-radius: 5px;
+    border: #6d9898 8px solid;
+    background-image: linear-gradient(90deg, #adadad 25%, #a3a3a3 25%, #a3a3a3 50%, #adadad 50%, #adadad 75%, #a3a3a3 75%, #a3a3a3 100%);
+    background-size: 12.00px 12.00px;
+}
+
+.nameBox {
+    display: flex;
+    position: relative;
+    top: 426px;
+    height: 50px;
+    width: 200px;
+    border-radius: 5px 5px 0 0;
+    border: #6d9898 8px solid;
+    background-color: #6d9898;
+    align-items: center;
+    justify-content: center;
+}
+
+.nameBox p{
+    font-size: 20px;
+    padding-right: 15px;
+}
+
+.messageBox p {
+    color: #577a7a;
+    font-size: 25px;
+    padding: 10px 15px;
+    max-width: 75%;
+    align-content: center;
+}
+
+.closeIconBox {
+    display: flex;
+    position: relative;
+    left: 96%;
+    max-width: 1px;
+    z-index: 2;
+}
+
+.closeIconBox img {
+    display: flex;
+    width: 40px;
+}
+
+.gruntImage {
+    display: flex;
+    justify-content: flex-end;
+    position: relative;
+    overflow: hidden;
+    flex-basis: 600px;
+    max-height: 600px;
+
+}
+
+.gruntImage img {
+    max-height: 100%;
+    width: auto;
+}
