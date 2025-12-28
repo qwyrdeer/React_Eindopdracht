@@ -35,7 +35,6 @@ input {
     font-family: "Cabin", sans-serif;
     font-weight: 900;
     font-style: normal;
-    border: 5px solid #90c8c7;
     font-size: 16px;
 }
 
@@ -43,7 +42,6 @@ label {
     font-family: "Cabin", sans-serif;
     font-weight: 900;
     font-style: normal;
-    border: 5px solid #90c8c7;
     font-size: 16px;
     color: #6d9898;
 }

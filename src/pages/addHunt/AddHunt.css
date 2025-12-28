@@ -32,3 +32,16 @@
 .uploadError {
 color: #C15A6E;
 }
+
+.radioBox {
+    display: flex;
+    width: 400px;
+    margin-bottom: 10px;
+    justify-content: space-evenly;
+}
+
+.radioBasis {
+    display: flex;
+    flex-direction: row;
+    width: 100px;
+}

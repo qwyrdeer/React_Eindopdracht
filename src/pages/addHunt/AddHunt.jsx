@@ -2,6 +2,7 @@ import './AddHunt.css';
 import InputFieldBasic from "../../components/inputFields/InputFieldBasic.jsx";
 import TextOnlyButton from "../../components/button/TextOnlyButton/TextOnlyButton.jsx";
 import {useState} from "react";
+import RadioButton from "../../components/button/RadioButton.jsx";
 
 function AddHunt() {
 
@@ -14,6 +15,20 @@ function AddHunt() {
     const [namePokemon, setNamePokemon] = useState('');
     const [nameGame, setNameGame] = useState('');
     const [nameMethod, setNameMethod] = useState('');
+
+    const [radioStatus, setRadioStatus] = useState('');
+
+    const handleChangePast = () => {
+        setRadioStatus("Past");
+    };
+
+    const handleChangeCurrent = () => {
+        setRadioStatus("Current");
+    };
+
+    const handleChangeFuture = () => {
+        setRadioStatus("Future");
+    };
 
     function sendForm(e) {
         e.preventDefault()
@@ -104,7 +119,32 @@ function AddHunt() {
                             id="method"
                             setInputValue={setNameMethod}
                         />
-
+                        <div className="radioBox">
+                            <span className="radioBasis">
+                            <RadioButton
+                                radioName="huntStatus"
+                                radioOption="Past"
+                                selectedStatus={radioStatus}
+                                setRadioSelection={setRadioStatus}
+                                handleClick={handleChangePast}
+                            /></span>
+                            <span className="radioBasis">
+                            <RadioButton
+                                radioName="huntStatus"
+                                radioOption="Current"
+                                selectedStatus={radioStatus}
+                                setRadioSelection={setRadioStatus}
+                                handleClick={handleChangeCurrent}
+                            /></span>
+                                <span className="radioBasis">
+                            <RadioButton
+                                radioName="huntStatus"
+                                radioOption="Future"
+                                selectedStatus={radioStatus}
+                                setRadioSelection={setRadioStatus}
+                                handleClick={handleChangeFuture}
+                            /></span>
+                        </div>
                         <label
                             className="uploadBox"
                             onDragOver={(e) => e.preventDefault()}
@@ -112,7 +152,7 @@ function AddHunt() {
                             id="shiny-gif"
                         >
                             {previewUrl ? (
-                                <img src={previewUrl} alt="Preview GIF" />
+                                <img src={previewUrl} alt="Preview GIF"/>
                             ) : (
                                 <p>Click or drag & drop your GIF here.</p>
                             )}
