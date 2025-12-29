@@ -1,0 +1,44 @@
+.fullProfilePageBox {
+    display: flex;
+
+}
+
+.profileBox {
+    display: flex;
+    width: 50%;
+    height: 100vh;
+    border: red 1px solid;
+}
+
+.huntProfileContainer{
+    display: flex;
+    justify-content: center;
+    flex-basis: 50%;
+    border: red 1px solid;
+}
+
+.huntBox {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.huntBox h1{
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.personalHunts {
+    height: 740px;
+    overflow: hidden;
+    overflow-y: scroll;
+    scroll-behavior: auto;
+    border: red 1px solid;
+}
+
+.buttonHuntBox {
+    display: flex;
+    width: 550px;
+    justify-content: space-evenly;
+    margin-bottom: 20px;
+}

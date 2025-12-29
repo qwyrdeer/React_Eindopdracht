@@ -14,15 +14,18 @@ function ResetPassword() {
                             typeField="password"
                             placeholder="Password"
                             inputStyle="baseInput"
+                            id="password"
                         />
                         <InputFieldBasic
                             typeField="password"
                             placeholder="Retype password"
                             inputStyle="baseInput"
+                            id="password"
                         />
 
                         <div className="buttonBox">
                             <TextOnlyButton
+                                type="submit"
                                 buttonStyle="greenButton baseButton"
                                 buttonName="Send"/>
                         </div>

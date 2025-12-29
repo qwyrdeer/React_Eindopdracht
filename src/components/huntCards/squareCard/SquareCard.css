@@ -1,0 +1,106 @@
+.squareCard {
+    width: 360px;
+    height: 360px;
+
+    box-shadow: #5b5c5c 5px 5px 12px;
+    overflow: hidden;
+    backdrop-filter: blur(4px);
+    align-content: center;
+    justify-items: center;
+
+    border-radius: 15px;
+    position: relative;
+    z-index: 1;
+}
+
+.squareBackground {
+    position: relative;
+    overflow: hidden;
+    border-radius: 15px;
+}
+
+.cardBorder {
+    display: flex;
+    width: 340px;
+    height: 340px;
+    border: 4px solid #ebeded;
+    border-radius: 11px;
+}
+
+.squareBackgroundLayer {
+    position: absolute;
+    inset: 0;
+    background-color: mediumpurple;
+    opacity: 0.5;
+    z-index: 0;
+}
+
+.huntDetails {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+
+    position: relative;
+    z-index: 2;
+}
+
+.huntContainer {
+    display: flex;
+    justify-content: center;
+    flex-basis: 160px;
+    margin-top: 20px;
+}
+
+.infoContainer {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 30px;
+}
+
+.huntGIFSizer {
+    display: block;
+    justify-content: flex-start;
+    align-content: flex-end;
+    /*border: 1px pink solid;*/
+}
+
+.huntDetails img {
+    display: flex;
+}
+
+.huntDetails h2 {
+    display: flex;
+    color: #6d9898;
+    font-size: 40px;
+    justify-content: center;
+}
+
+.huntDetails p {
+    display: flex;
+    color: #6d9898;
+    font-size: 20px;
+    justify-content: center;
+    /*border: 1px red solid;*/
+}
+
+.squareBackground1 {
+    background-size: cover;
+    background-image: url("../../../assets/Backgrounds/JPG/SQUARE/BackgroundGalactic.jpg");
+}
+
+.squareBackground2 {
+    background-size: cover;
+    background-image: url("../../../assets/Backgrounds/JPG/SQUARE/BackgroundGalactic2.jpg");
+}
+
+.squareBackground3 {
+    background-size: cover;
+    background-image: url("../../../assets/Backgrounds/JPG/SQUARE/BackgroundGalactic3.jpg");
+}
+
+.squareBackground4 {
+    background-size: cover;
+    background-image: url("../../../assets/Backgrounds/JPG/SQUARE/BackgroundGalactic4.jpg");
+}

@@ -1,0 +1,29 @@
+
+.horizontalMiniCard {
+    height: 230px;
+    width: 551px;
+
+    box-shadow: #5b5c5c 5px 5px 12px;
+    overflow: hidden;
+    backdrop-filter: blur(4px);
+
+    border-radius: 15px;
+    margin-bottom: 16px;
+}
+
+.horizontalMiniBackground {
+    border-radius: 15px;
+
+    opacity: 50%;
+    background-color: mediumpurple;
+}
+
+.horizontalBackground1 {
+    background-size: cover;
+    background-image: url("../../../../assets/Backgrounds/JPG/HORIZONTAL/BackgroundGalactic.jpg");
+}
+
+.horizontalBackground2 {
+    background-size: cover;
+    background-image: url("../../../../assets/Backgrounds/JPG/HORIZONTAL/BackgroundGalactic2.jpg");
+}

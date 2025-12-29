@@ -2,19 +2,56 @@ import './AddHunt.css';
 import InputFieldBasic from "../../components/inputFields/InputFieldBasic.jsx";
 import TextOnlyButton from "../../components/button/TextOnlyButton/TextOnlyButton.jsx";
 import {useState} from "react";
+import RadioButton from "../../components/button/RadioButton.jsx";
+import DoubleInput from "../../components/inputFields/DoubleInput.jsx";
 
 function AddHunt() {
 
-    const [previewUrl, setPreviewUrl] = useState(null);
-    const [error, setError] = useState(null);
+    // Bestanden versturen, aanpassing toevoegen via EdHub: https://edhub.novi.nl/study/courses/610/content/18806
+
+    const [previewUrl, setPreviewUrl] = useState('');
+    const [error, setError] = useState('');
     const MAX_FILE_SIZE = 1_100_000;
 
+    const [namePokemon, setNamePokemon] = useState('');
+    const [dexId, setDexId] = useState(0);
+    const [nameGame, setNameGame] = useState('');
+    const [nameMethod, setNameMethod] = useState('');
+    const [huntEncounters, setHuntEncounters] = useState(0);
+
+    const [radioStatus, setRadioStatus] = useState('');
+
+    const handleChangePast = () => {
+        setRadioStatus("Past");
+    };
+
+    const handleChangeCurrent = () => {
+        setRadioStatus("Current");
+    };
+
+    const handleChangeFuture = () => {
+        setRadioStatus("Future");
+    };
+
+    function sendForm(e) {
+        e.preventDefault()
+        console.log({namePokemon, dexId, nameGame, nameMethod, previewUrl, radioStatus, huntEncounters})
+        // setNamePokemon('')
+        // setDexId(0)
+        // setNameGame('')
+        // setNameMethod('')
+        // setHuntEncounters(0)
+        // setRadioStatus('')
+        // setPreviewUrl('')
+    }
+
+
     const handleFileChange = (e) => {
-        setError(null);
+        setError('');
 
         if (e.target.files.length > 1) {
             setError("Only upload one GIF");
-            setPreviewUrl(null);
+            setPreviewUrl('');
             return;
         }
 
@@ -23,13 +60,13 @@ function AddHunt() {
 
         if (file.type !== "image/gif") {
             setError("Only GIF files are allowed");
-            setPreviewUrl(null);
+            setPreviewUrl('');
             return;
         }
 
         if (file.size > MAX_FILE_SIZE) {
             setError("Files may not be bigger than 1.1MB");
-            setPreviewUrl(null);
+            setPreviewUrl('');
             return;
         }
 
@@ -38,26 +75,26 @@ function AddHunt() {
 
     const handleDrop = (e) => {
         e.preventDefault();
-        setError(null);
+        setError('');
 
         const file = e.dataTransfer.files[0];
         if (!file) return;
 
         if (file.type !== "image/gif") {
             setError("Only GIF files are allowed");
-            setPreviewUrl(null);
+            setPreviewUrl('');
             return;
         }
 
         if (file.size > MAX_FILE_SIZE) {
             setError("Files may not be bigger than 1.1MB");
-            setPreviewUrl(null);
+            setPreviewUrl('');
             return;
         }
 
         if (e.dataTransfer.files.length > 1) {
             setError("Only upload one GIF");
-            setPreviewUrl(null);
+            setPreviewUrl('');
             return;
         }
 
@@ -66,33 +103,79 @@ function AddHunt() {
 
     return (
         <>
-            <div className="fullPageBox">
-                <div className="contentBox">
+            <div className="fullAddHuntPageBox">
+                <div className="contentAddHuntBox">
                     <div className="pageTitle"><h1>ADD HUNT.</h1></div>
-                    <form action="">
-                        <InputFieldBasic
-                            typeField="text"
-                            placeholder="Name Pokémon you are hunting"
-                            inputStyle="baseInput"
+                    <form onSubmit={sendForm}>
+                        <DoubleInput
+                            typeField1="text"
+                            placeholder1="Name Pokémon you are hunting"
+                            id1="pokemon"
+                            setInputValue1={setNamePokemon}
+                            inputStyle="doubleInputBox"
+                            typeField2="number"
+                            placeholder2="# DexID"
+                            id2="dexId"
+                            maxNumber="1025"
+                            minNumber="1"
+                            setInputValue2={setDexId}
                         />
                         <InputFieldBasic
                             typeField="text"
                             placeholder="What game are you hunting in?"
                             inputStyle="baseInput"
+                            id="game"
+                            setInputValue={setNameGame}
                         />
                         <InputFieldBasic
                             typeField="text"
                             placeholder="What method are you hunting with?"
                             inputStyle="baseInput"
+                            id="method"
+                            setInputValue={setNameMethod}
                         />
-
+                        <div className="radioBox">
+                            <span className="radioBasis">
+                            <RadioButton
+                                radioName="huntStatus"
+                                radioOption="Past"
+                                selectedStatus={radioStatus}
+                                setRadioSelection={setRadioStatus}
+                                handleClick={handleChangePast}
+                            /></span>
+                            <span className="radioBasis">
+                            <RadioButton
+                                radioName="huntStatus"
+                                radioOption="Current"
+                                selectedStatus={radioStatus}
+                                setRadioSelection={setRadioStatus}
+                                handleClick={handleChangeCurrent}
+                            /></span>
+                                <span className="radioBasis">
+                            <RadioButton
+                                radioName="huntStatus"
+                                radioOption="Future"
+                                selectedStatus={radioStatus}
+                                setRadioSelection={setRadioStatus}
+                                handleClick={handleChangeFuture}
+                            /></span>
+                        </div>
+                        {radioStatus === "Past" ?
+                            <InputFieldBasic
+                                typeField="number"
+                                placeholder="Amount of encounters"
+                                inputStyle="baseInput"
+                                id="encounters"
+                                setInputValue={setHuntEncounters}
+                            /> : <p></p>}
                         <label
                             className="uploadBox"
                             onDragOver={(e) => e.preventDefault()}
                             onDrop={handleDrop}
+                            id="shiny-gif"
                         >
                             {previewUrl ? (
-                                <img src={previewUrl} alt="Preview GIF" />
+                                <img src={previewUrl} alt="Preview GIF"/>
                             ) : (
                                 <p>Click or drag & drop your GIF here.</p>
                             )}
@@ -101,6 +184,7 @@ function AddHunt() {
                                 type="file"
                                 accept="image/gif"
                                 onChange={handleFileChange}
+                                id="shiny-gif"
                                 hidden
                             />
                         </label>
@@ -109,6 +193,7 @@ function AddHunt() {
 
                         <div className="buttonBox addHuntButton">
                             <TextOnlyButton
+                                type="submit"
                                 buttonStyle="greenButton baseButton"
                                 buttonName="Add hunt"/>
                         </div>

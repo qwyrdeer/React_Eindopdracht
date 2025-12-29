@@ -1,0 +1,37 @@
+.verticalCard {
+    width: 360px;
+    height: 735px;
+
+    box-shadow: #5b5c5c 5px 5px 12px;
+    overflow: hidden;
+    backdrop-filter: blur(4px);
+
+    border-radius: 15px;
+}
+
+.verticalBackground {
+    border-radius: 15px;
+
+    opacity: 50%;
+    background-color: mediumpurple;
+}
+
+.verticalBackground1 {
+    background-size: cover;
+    background-image: url("../../../assets/Backgrounds/JPG/VERTICAL/BackgroundGalactic1.jpg");
+}
+
+.verticalBackground2 {
+    background-size: cover;
+    background-image: url("../../../assets/Backgrounds/JPG/VERTICAL/BackgroundGalactic2.jpg");
+}
+
+.verticalBackground3 {
+    background-size: cover;
+    background-image: url("../../../assets/Backgrounds/JPG/VERTICAL/BackgroundGalactic.jpg");
+}
+
+.verticalBackground4 {
+    background-size: cover;
+    background-image: url("../../../assets/Backgrounds/JPG/VERTICAL/BackgroundGalactic4.jpg");
+}

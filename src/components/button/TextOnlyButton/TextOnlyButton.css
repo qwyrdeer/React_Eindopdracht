@@ -33,6 +33,10 @@
     background-color: #6d9898;
 }
 
+.greenButton:focus {
+    background-color: #6d9898;
+}
+
 .redButton {
     background-color: #e32f6f;
     color: #ebeded;

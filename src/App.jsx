@@ -18,6 +18,7 @@ import ManageCommunity from "./pages/adminPages/manageCommunity/ManageCommunity.
 import ResetPassword from "./pages/entryPages(Reg_Login)/resetPassword/ResetPassword.jsx";
 import MyProfile from "./pages/publicProfiles/MyProfile.jsx";
 import UserProfile from "./pages/publicProfiles/UserProfile.jsx";
+import TestPage from "./pages/testpage/TestPage.jsx";
 
 function App() {
 
@@ -43,6 +44,7 @@ function App() {
                         <Route path="/reset-password" element={<ResetPassword/>}/>
                         <Route path="/forgot-password" element={<ForgotPassword/>}/>
                         <Route path="/register" element={<Register/>}/>
+                        <Route path="/testpage" element={<TestPage/>}/>
                         <Route path="*" element={<NotFound/>}/>
                     </Routes>
                 </main>

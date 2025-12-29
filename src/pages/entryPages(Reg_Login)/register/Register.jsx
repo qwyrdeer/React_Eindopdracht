@@ -13,21 +13,25 @@ function Register() {
                             typeField="text"
                             placeholder="Username"
                             inputStyle="baseInput"
+                            id="username"
                         />
                         <InputFieldBasic
                             typeField="email"
                             placeholder="Email"
                             inputStyle="baseInput"
+                            id="email"
                         />
                         <InputFieldBasic
                             typeField="password"
                             placeholder="Password"
                             inputStyle="baseInput"
+                            id="password"
                         />
                         <InputFieldBasic
                             typeField="password"
                             placeholder="Retype password"
                             inputStyle="baseInput"
+                            id="password"
                         />
 
                         <div className="rerouteLink">
@@ -37,6 +41,7 @@ function Register() {
 
                         <div className="buttonBox">
                             <TextOnlyButton
+                                type="submit"
                                 buttonStyle="greenButton baseButton"
                                 buttonName="Send"/>
                         </div>
