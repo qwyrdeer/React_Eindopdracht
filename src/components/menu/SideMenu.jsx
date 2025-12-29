@@ -8,6 +8,7 @@ import UserManagementIcon from '../../assets/Icons/SVG/ManageUserIcon.svg'
 import Button from "../button/Button.jsx";
 import React, {useState} from "react";
 import HamburgerIcon from "../../assets/Icons/SVG/MenuIcon.svg";
+import UserInsightIcon from "../../assets/Icons/SVG/UserInsightIcon.svg"
 import {Route, useNavigate} from "react-router-dom";
 import SettingsIcon from "../../assets/Icons/SVG/SettingsIcon.svg";
 
@@ -41,7 +42,7 @@ return (
                   />
                       </li>
                   <li><Button
-                      buttonIcon={MyHuntIcons}
+                      buttonIcon={UserInsightIcon}
                       buttonStyle={openMenu === false ? "baseButton menuSmallButton" : "baseButton menuSideButton"}
                       onClick={() => navigate("/my-profile")}
                       buttonName={openMenu === true ? 'My hunts' : null}

@@ -15,6 +15,7 @@ function TopMenu() {
 return (
   <>
     <div className="topBar">
+        <div className="leftTopSide"></div>
         <NavLink to="/community-feed"><img src={GalacticLogo} alt="Logo Team Galactic" className="galacticLogo"/></NavLink>
         <div className="menuRight">
             {loggedIn === false ?

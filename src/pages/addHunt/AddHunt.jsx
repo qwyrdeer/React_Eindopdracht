@@ -103,8 +103,8 @@ function AddHunt() {
 
     return (
         <>
-            <div className="fullPageBox">
-                <div className="contentBox">
+            <div className="fullAddHuntPageBox">
+                <div className="contentAddHuntBox">
                     <div className="pageTitle"><h1>ADD HUNT.</h1></div>
                     <form onSubmit={sendForm}>
                         <DoubleInput
