@@ -1,81 +1,68 @@
 .fullTestPageBox {
-    display: flex;
-    flex-direction: column;
-    max-width: 100%;
-    min-height: 100%;
-    position: relative;
-    overflow: hidden;
-}
-
-.pageTestTitle {
-    display: flex;
-    flex-grow: 1;
-}
-
-.messageBox {
-    display: flex;
-    position: absolute;
-    min-width: 100%;
-    min-height: 130px;
-    bottom: 1px;
-    right: 1px;
-    margin-bottom: 50px;
-    border-radius: 5px;
-    border: #6d9898 8px solid;
-    background-image: linear-gradient(90deg, #adadad 25%, #a3a3a3 25%, #a3a3a3 50%, #adadad 50%, #adadad 75%, #a3a3a3 75%, #a3a3a3 100%);
-    background-size: 12.00px 12.00px;
-}
-
-.nameBox {
-    display: flex;
-    position: relative;
-    top: 426px;
-    height: 50px;
-    width: 200px;
-    border-radius: 5px 5px 0 0;
-    border: #6d9898 8px solid;
-    background-color: #6d9898;
-    align-items: center;
+    display: grid;
     justify-content: center;
+    padding-left: 50px;
+    padding-right: 110px;
+    margin-right: 20px;
+    margin-left: 10px;
+
+    grid-template-columns: repeat(3, 360px);
+
+    grid-auto-rows: 360px;
+
+    gap: 16px;
+
+    width: 100vw;
+    height: 100vh;
+
+    margin-top: 50px;
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    box-sizing: border-box;
 }
 
-.nameBox p{
-    font-size: 20px;
-    padding-right: 15px;
+.a01 {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
 }
 
-.messageBox p {
-    color: #577a7a;
-    font-size: 25px;
-    padding: 10px 15px;
-    max-width: 75%;
-    align-content: center;
+.c03 {
+    grid-column: 2 / 4;
+    grid-row: 1 / 2;
 }
 
-.closeIconBox {
-    display: flex;
-    position: relative;
-    left: 96%;
-    max-width: 1px;
-    z-index: 2;
+.b04 {
+    grid-column: 1 / 2;
+    grid-row: 2 / 4;
 }
 
-.closeIconBox img {
-    display: flex;
-    width: 40px;
+.a05 {
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
 }
 
-.gruntImage {
-    display: flex;
-    justify-content: flex-end;
-    position: relative;
-    overflow: hidden;
-    flex-basis: 600px;
-    max-height: 600px;
-
+.a06 {
+    grid-column: 3 / 4;
+    grid-row: 2 / 3;
 }
 
-.gruntImage img {
-    max-height: 100%;
-    width: auto;
+.c09 {
+    grid-column: 2 / 4;
+    grid-row: 3 / 4;
+}
+
+.a02 {
+    grid-column: 1 / 2;
+    grid-row: 4 / 5;
+}
+
+.a07 {
+    grid-column: 2 / 3;
+    grid-row: 4 / 5;
+}
+
+.a08 {
+    grid-column: 3 / 4;
+    grid-row: 4 / 5;
 }

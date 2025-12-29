@@ -1,39 +1,76 @@
 import './TestPage.css';
-import Grunt from "../../assets/Images/Team_Galactic_Grunts_Test.png"
-import CloseIcon from "../../assets/Icons/SVG/CloseIcon.svg"
-import DoubleInput from "../../components/inputFields/DoubleInput.jsx";
-import {useState} from "react";
+
+import SquareCard from "../../components/huntCards/squareCard/SquareCard.jsx";
+import VerticalCard from "../../components/huntCards/verticalCard/VerticalCard.jsx";
+import HorizontalCard from "../../components/huntCards/horizontalCard/HorizontalCard.jsx";
+import Rayquaza from "../../assets/PokemonGIF/rayquaza.gif";
+import Togepi from "../../assets/PokemonGIF/togepi.gif";
+import Alcremie from "../../assets/PokemonGIF/alcremie-rainbow-swirl-berry.gif";
+import Polteageist from "../../assets/PokemonGIF/polteageist.gif";
+import RagingBolt from "../../assets/PokemonGIF/ragingbolt.gif";
+import Rapidash from "../../assets/PokemonGIF/rapidash-galar.gif";
+import Eternatus from "../../assets/PokemonGIF/eternatus.gif";
+import EternatusMax from "../../assets/PokemonGIF/eternatus-eternamax.gif";
+import {useMemo} from "react";
 
 
 function TestPage() {
 
-    const [namePokemon, setNamePokemon] = useState('');
-    const [dexId, setDexId] = useState(0);
+
+    const cardHunts = [
+        {PokemonGIF: Rayquaza, PokemonName: 'Rayquaza', DexID: 384},
+        {PokemonGIF: Togepi, PokemonName: 'Togepi', DexID: 175},
+        {PokemonGIF: Alcremie, PokemonName: 'Alcremie', DexID: 869},
+        {PokemonGIF: Polteageist, PokemonName: 'Polteageist', DexID: 855},
+        {PokemonGIF: RagingBolt, PokemonName: 'Raging Bolt', DexID: 1021},
+        {PokemonGIF: Rapidash, PokemonName: 'Rapidash', DexID: 78},
+        {PokemonGIF: Eternatus, PokemonName: 'Eternatus', DexID: 890},
+        {PokemonGIF: EternatusMax, PokemonName: 'Eternatus', DexID: 890},
+    ];
+
+    function getRandomHunt(hunts) {
+        // eslint-disable-next-line react-hooks/purity
+        const randomIndex = Math.floor(Math.random() * hunts.length);
+        return hunts[randomIndex];
+    }
+
+    const randomHunt= useMemo(() => getRandomHunt(cardHunts), []);
 
     return (
         <>
             <div className="fullTestPageBox">
-            <div className="pageTestTitle"><h1>TESTPAGE.</h1></div>
-                <DoubleInput
-                    typeField1="text"
-                    placeholder1="Name Pokémon you are hunting"
-                    id1="pokemon"
-                    setInputValue1={setNamePokemon}
-                    inputStyle="doubleInputBox"
-                    typeField2="number"
-                    placeholder2="# DexID"
-                    id2="dexId"
-                    maxNumber="1025"
-                    minNumber="1"
-                    setInputValue2={setDexId}
-                />
+                <div className="a01"><SquareCard
+                    PokemonGIF={randomHunt.PokemonGIF}
+                    PokemonName={randomHunt.PokemonName}
+                    DexID={randomHunt.DexID}/></div>
+                <div className="c03"><HorizontalCard /></div>
 
-            <div className="nameBox"><p>Galactic Grunt</p></div>
-            <div className="messageBox">
-                <span className="closeIconBox"><img src={CloseIcon} alt="close icon"/></span>
-                <p>Hey visitor! We need your help to locate all shiny Pokemon... Create your own hunter account in the right top corner - we kinda depend on you!</p>
-            </div>
-            <div className="gruntImage"><img src={Grunt} alt=""/></div>
+                <div className="b04"><VerticalCard /></div>
+                <div className="a05"><SquareCard
+                    PokemonGIF={randomHunt.PokemonGIF}
+                    PokemonName={randomHunt.PokemonName}
+                    DexID={randomHunt.DexID}/></div>
+                <div className="a06"><SquareCard
+                    PokemonGIF={randomHunt.PokemonGIF}
+                    PokemonName={randomHunt.PokemonName}
+                    DexID={randomHunt.DexID}/></div>
+
+                <div className="c09"><HorizontalCard /></div>
+
+                <div className="a02"><SquareCard
+                    PokemonGIF={randomHunt.PokemonGIF}
+                    PokemonName={randomHunt.PokemonName}
+                    DexID={randomHunt.DexID}/></div>
+                <div className="a07"><SquareCard
+                    PokemonGIF={randomHunt.PokemonGIF}
+                    PokemonName={randomHunt.PokemonName}
+                    DexID={randomHunt.DexID}/></div>
+                <div className="a08"><SquareCard
+                    PokemonGIF={randomHunt.PokemonGIF}
+                    PokemonName={randomHunt.PokemonName}
+                    DexID={randomHunt.DexID}/></div>
+
+                <p>end of feed.</p>
             </div>
         </>
     );

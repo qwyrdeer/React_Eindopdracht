@@ -1,3 +1,69 @@
-/*base {*/
-/*    scroll-behavior: smooth;*/
-/*}*/
+.fullCommunityPageBox {
+    display: grid;
+    justify-content: center;
+    padding-left: 50px;
+    padding-right: 110px;
+    margin-right: 20px;
+    margin-left: 10px;
+
+    grid-template-columns: repeat(3, 360px);
+
+    grid-auto-rows: 360px;
+
+    gap: 16px;
+
+    width: 100vw;
+    height: 100vh;
+
+    margin-top: 50px;
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+.a01 {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+}
+
+.c03 {
+    grid-column: 2 / 4;
+    grid-row: 1 / 2;
+}
+
+.b04 {
+    grid-column: 1 / 2;
+    grid-row: 2 / 4;
+}
+
+.a05 {
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+}
+
+.a06 {
+    grid-column: 3 / 4;
+    grid-row: 2 / 3;
+}
+
+.c09 {
+    grid-column: 2 / 4;
+    grid-row: 3 / 4;
+}
+
+.a02 {
+    grid-column: 1 / 2;
+    grid-row: 4 / 5;
+}
+
+.a07 {
+    grid-column: 2 / 3;
+    grid-row: 4 / 5;
+}
+
+.a08 {
+    grid-column: 3 / 4;
+    grid-row: 4 / 5;
+}

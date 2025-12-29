@@ -6,9 +6,10 @@ import AddHuntIcon from '../../assets/Icons/SVG/PlusIcon.svg'
 import AboutUsIcon from '../../assets/Icons/SVG/InfoIcon.svg'
 import UserManagementIcon from '../../assets/Icons/SVG/ManageUserIcon.svg'
 import Button from "../button/Button.jsx";
-import {useState} from "react";
+import React, {useState} from "react";
 import HamburgerIcon from "../../assets/Icons/SVG/MenuIcon.svg";
-import {useNavigate} from "react-router-dom";
+import {Route, useNavigate} from "react-router-dom";
+import SettingsIcon from "../../assets/Icons/SVG/SettingsIcon.svg";
 
 
 function SideMenu () {
@@ -59,6 +60,12 @@ return (
                   /></li>
               </ul>
               <div className="adminLeftMenu">
+                  <Button
+                      buttonIcon={SettingsIcon}
+                      buttonStyle={openMenu === false ? "baseButton menuSmallManageButton" : "baseButton menuManageButton"}
+                      onClick={() => navigate("/testpage")}
+                      buttonName={openMenu === true ? 'Test page' : null}
+                  />
               <Button
                   buttonIcon={UserManagementIcon}
                   buttonStyle={openMenu === false ? "baseButton menuSmallManageButton" : "baseButton menuManageButton"}
