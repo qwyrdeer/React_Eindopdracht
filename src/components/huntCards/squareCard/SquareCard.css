@@ -1,10 +1,35 @@
+.flipCardScene {
+    perspective: 1200px;
+}
+
+.flipCard {
+    position: relative;
+    width: 360px;
+    height: 360px;
+    transform-style: preserve-3d;
+    transition: transform 0.7s ease;
+}
+
+.flipCardFront {
+    z-index: 2;
+}
+
+.flipCard.isFlipped {
+    transform: rotateY(180deg);
+}
+
+.flipCardFace {
+    position: absolute;
+    inset: 0;
+    backface-visibility: hidden;
+    overflow: hidden;
+    border-radius: 15px;
+}
+
 .squareCard {
     width: 360px;
     height: 360px;
 
-    box-shadow: #5b5c5c 5px 5px 12px;
-    overflow: hidden;
-    backdrop-filter: blur(4px);
     align-content: center;
     justify-items: center;
 
@@ -15,8 +40,10 @@
 
 .squareBackground {
     position: relative;
-    overflow: hidden;
+    width: 100%;
+    height: 100%;
     border-radius: 15px;
+    box-shadow: #5b5c5c 2px 2px 12px;
 }
 
 .cardBorder {
@@ -31,8 +58,16 @@
     position: absolute;
     inset: 0;
     background-color: mediumpurple;
-    opacity: 0.5;
     z-index: 0;
+    filter: blur(4px) opacity(75%);
+}
+
+.squareBackgroundLayerBack {
+    position: absolute;
+    inset: 0;
+    background-color: mediumpurple;
+    z-index: 1;
+    filter: blur(4px) opacity(50%);
 }
 
 .huntDetails {
@@ -41,9 +76,33 @@
     justify-content: center;
     width: 100%;
     height: 100%;
+    padding-top: 10px;
 
     position: relative;
     z-index: 2;
+}
+
+.huntDetails:hover {
+    cursor: pointer;
+}
+
+.statusBox {
+    display: flex;
+    align-items: center;
+    padding-right: 10px;
+}
+
+.statusBox h3{
+    flex-grow: 1;
+}
+
+.statusBox img {
+    display: block;
+}
+
+.statusIcon {
+    display: flex;
+    width: 35px;
 }
 
 .huntContainer {
@@ -55,6 +114,7 @@
 
 .infoContainer {
     display: flex;
+    align-items: center;
     flex-direction: column;
     margin-bottom: 30px;
 }
@@ -63,27 +123,103 @@
     display: block;
     justify-content: flex-start;
     align-content: flex-end;
-    /*border: 1px pink solid;*/
-}
-
-.huntDetails img {
-    display: flex;
 }
 
 .huntDetails h2 {
-    display: flex;
-    color: #6d9898;
+    color: #ebeded;
     font-size: 40px;
     justify-content: center;
 }
 
 .huntDetails p {
-    display: flex;
-    color: #6d9898;
+    color: #ebeded;
     font-size: 20px;
     justify-content: center;
-    /*border: 1px red solid;*/
 }
+
+.huntDetails h3 {
+    font-style: italic;
+    color: #ebeded;
+    font-size: 20px;
+    padding-left: 15px;
+}
+
+.flipBox {
+    display: flex;
+    position: absolute;
+    right: 10px;
+    bottom: 8px;
+}
+
+.flipBox img{
+    display: block;
+    height: 35px;
+}
+
+.flipCardBack {
+    transform: rotateY(180deg);
+    color: white;
+    background-color: #6d9898;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.huntDetailsBack {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    padding-top: 10px;
+
+    position: relative;
+    z-index: 2;
+}
+
+.statusBoxBack {
+    display: flex;
+    justify-content: center;
+}
+
+.profileRedirection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    z-index: 10;
+}
+
+.statusBoxBack h3{
+    color: #ebeded;
+}
+
+.huntContainerBack {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-basis: 100px;
+}
+
+.huntContainerBack p{
+    color: #ebeded;
+}
+
+.huntContainerBack h2{
+    color: #ebeded;
+}
+
+.infoContainerBack {
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 50px;
+}
+
+.infoContainerBack p{
+    color: #ebeded;
+}
+
 
 .squareBackground1 {
     background-size: cover;

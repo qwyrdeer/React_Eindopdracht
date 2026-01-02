@@ -20,7 +20,9 @@ function HorizontalCardMini() {
         <>
             <div className={`horizontalMiniBackground ${randomHBackground}`}>
                 <article className='horizontalMiniCard'>
+                    <div className="cardMiniBorder">
                     <p></p>
+                    </div>
                 </article>
             </div>
         </>

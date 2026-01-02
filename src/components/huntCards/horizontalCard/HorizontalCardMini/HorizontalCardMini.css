@@ -3,12 +3,22 @@
     height: 230px;
     width: 551px;
 
-    box-shadow: #5b5c5c 5px 5px 12px;
+    box-shadow: #5b5c5c 5px 5px 9px;
     overflow: hidden;
     backdrop-filter: blur(4px);
+    align-content: center;
+    justify-items: center;
 
     border-radius: 15px;
     margin-bottom: 16px;
+}
+
+.cardMiniBorder {
+    display: flex;
+    width: 535px;
+    height: 213px;
+    border: 4px solid #ebeded;
+    border-radius: 11px;
 }
 
 .horizontalMiniBackground {

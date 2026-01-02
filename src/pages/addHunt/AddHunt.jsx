@@ -19,18 +19,10 @@ function AddHunt() {
     const [nameMethod, setNameMethod] = useState('');
     const [huntEncounters, setHuntEncounters] = useState(0);
 
-    const [radioStatus, setRadioStatus] = useState('');
+    const [radioStatus, setRadioStatus] = useState("Current");
 
-    const handleChangePast = () => {
-        setRadioStatus("Past");
-    };
-
-    const handleChangeCurrent = () => {
-        setRadioStatus("Current");
-    };
-
-    const handleChangeFuture = () => {
-        setRadioStatus("Future");
+    const handleSelect = (status) => {
+        setRadioStatus(status);
     };
 
     function sendForm(e) {
@@ -101,6 +93,8 @@ function AddHunt() {
         setPreviewUrl(URL.createObjectURL(file));
     };
 
+
+
     return (
         <>
             <div className="fullAddHuntPageBox">
@@ -120,6 +114,9 @@ function AddHunt() {
                             minNumber="1"
                             setInputValue2={setDexId}
                         />
+
+                        {/*<div className="errorPlace">{inputError && <p className="uploadError">{inputError}</p>}</div>*/}
+
                         <InputFieldBasic
                             typeField="text"
                             placeholder="What game are you hunting in?"
@@ -139,25 +136,20 @@ function AddHunt() {
                             <RadioButton
                                 radioName="huntStatus"
                                 radioOption="Past"
-                                selectedStatus={radioStatus}
-                                setRadioSelection={setRadioStatus}
-                                handleClick={handleChangePast}
+                                onClick={() => handleSelect('Past')}
                             /></span>
                             <span className="radioBasis">
                             <RadioButton
                                 radioName="huntStatus"
                                 radioOption="Current"
-                                selectedStatus={radioStatus}
-                                setRadioSelection={setRadioStatus}
-                                handleClick={handleChangeCurrent}
+                                defaultChecked="true"
+                                onClick={() => handleSelect('Current')}
                             /></span>
                                 <span className="radioBasis">
                             <RadioButton
                                 radioName="huntStatus"
                                 radioOption="Future"
-                                selectedStatus={radioStatus}
-                                setRadioSelection={setRadioStatus}
-                                handleClick={handleChangeFuture}
+                                onClick={() => handleSelect('Future')}
                             /></span>
                         </div>
                         {radioStatus === "Past" ?
@@ -189,7 +181,6 @@ function AddHunt() {
                             />
                         </label>
                         <div className="errorPlace">{error && <p className="uploadError">{error}</p>}</div>
-
 
                         <div className="buttonBox addHuntButton">
                             <TextOnlyButton

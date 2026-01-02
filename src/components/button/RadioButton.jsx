@@ -1,6 +1,6 @@
 import './RadioButton.css';
 
-function RadioButton({radioName, radioOption, handleClick}) {
+function RadioButton({radioName, radioOption, onClick, defaultChecked}) {
 
 return (
 
@@ -10,7 +10,8 @@ return (
                 type='radio'
                 name={radioName}
                 value={radioOption}
-                onChange={(e) => handleClick(e.target.value)}
+                onClick={onClick}
+                defaultChecked={defaultChecked}
             /> {radioOption}
         </label>
     </>

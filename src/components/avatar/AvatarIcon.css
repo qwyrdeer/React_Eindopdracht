@@ -1,0 +1,39 @@
+.avatarBox {
+    display: flex;
+    align-items: center;
+    background-color: #ffffff;
+    border: 6px solid #90c8c7;
+    border-radius: 15px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.avatarBox--blocked {
+    border: 6px solid #e32f6f;
+}
+
+.avatarBox--admin {
+    border: 6px solid #8673ae;
+}
+
+.avatarComponentSizer img{
+    width: 100%;
+    height: 100%;
+    display: block;
+    border-radius: 15px;
+}
+
+.avatarSizeSmall {
+    width: 42px;
+    height: 42px;
+}
+
+.avatarSizeNormal {
+    width: 85px;
+    height: 85px;
+}
+
+.avatarSizeBig {
+    width: 115px;
+    height: 115px;
+}
