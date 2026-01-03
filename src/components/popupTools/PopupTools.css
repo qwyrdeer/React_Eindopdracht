@@ -1,0 +1,27 @@
+
+.popupBox {
+    display: flex;
+    position: absolute;
+    left: 33%;
+    top: 25%;
+    width: 700px;
+    height: 500px;
+    border: #6d9898 6px solid;
+    background-color: #ebeded;
+    border-radius: 15px;
+    z-index: 3;
+}
+
+.popupScreenfiller {
+    display: flex;
+    position: fixed;
+    left: 1px;
+    top: 1px;
+    overflow: visible;
+
+    width: 100%;
+    height: 100vh;
+    filter: opacity(40%);
+    background-color: #5b5c5c;
+    z-index: 1;
+}

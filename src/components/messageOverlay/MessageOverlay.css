@@ -1,22 +1,28 @@
 .messageBox {
     display: flex;
-    position: absolute;
-    min-width: 100%;
-    min-height: 130px;
+    position: fixed;
+    width: 90%;
+    max-width: 80vw;
+    height: 130px;
     bottom: 1px;
-    right: 1px;
+    right: 50px;
+    margin-left: 60px;
+    margin-right: 70px;
     margin-bottom: 50px;
     border-radius: 5px;
     border: #6d9898 8px solid;
     background-image: linear-gradient(90deg, #adadad 25%, #a3a3a3 25%, #a3a3a3 50%, #adadad 50%, #adadad 75%, #a3a3a3 75%, #a3a3a3 100%);
-    background-size: 12.00px 12.00px;
+    background-size: 12px 12px;
+
+    z-index: 1;
 }
 
 .nameBox {
     display: flex;
-    position: relative;
-    top: 426px;
+    position: absolute;
+    bottom: 120px;
     height: 50px;
+    left: -8px;
     width: 200px;
     border-radius: 5px 5px 0 0;
     border: #6d9898 8px solid;
@@ -25,43 +31,58 @@
     justify-content: center;
 }
 
-.nameBox p{
+.nameBox {
+    color: #ebeded;
     font-size: 20px;
     padding-right: 15px;
 }
 
-.messageBox p {
+.messageBox > p {
     color: #577a7a;
     font-size: 25px;
     padding: 10px 15px;
     max-width: 75%;
     align-content: center;
+    overflow: scroll;
 }
 
 .closeIconBox {
     display: flex;
-    position: relative;
-    left: 96%;
-    max-width: 1px;
+    position: absolute;
+    right: 130px;
+    bottom: 130px;
     z-index: 2;
 }
 
 .closeIconBox img {
-    display: flex;
     width: 40px;
+    height: 40px;
 }
 
 .gruntImage {
-    display: flex;
-    justify-content: flex-end;
-    position: relative;
-    overflow: hidden;
-    flex-basis: 600px;
-    max-height: 600px;
+    position: absolute;
+    right: 10px;
+    bottom: 1px;
 
+    height: 80vh;
+    max-height: 1000px;
+    z-index: 2;
 }
 
 .gruntImage img {
     max-height: 100%;
     width: auto;
+}
+
+.screenfiller {
+    display: flex;
+    position: absolute;
+    left: 1px;
+    top: 1px;
+    overflow: visible;
+
+    width: 100%;
+    height: 100vh;
+    filter: opacity(40%);
+    background-color: #5b5c5c;
 }

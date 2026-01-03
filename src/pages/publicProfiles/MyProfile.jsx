@@ -3,8 +3,20 @@ import TextOnlyButton from "../../components/button/TextOnlyButton/TextOnlyButto
 import HorizontalCardMini from "../../components/huntCards/horizontalCard/HorizontalCardMini/HorizontalCardMini.jsx";
 import AvatarIcon from "../../components/avatar/AvatarIcon.jsx";
 import {useState} from "react";
+import GalacticAvatar5 from "../../assets/AvatarImages/GruntAvatar5.jpg";
 
 function MyProfile() {
+
+    const tempUserData = {
+        UserId: 1,
+        Username: 'Wessel',
+        UserAvatar: GalacticAvatar5,
+        RegisterDate: '01/06/2025',
+        LastLoginDate: 'Today',
+        Email: 'xx@xx.nl',
+        UserRole: 'Admin',
+        Block: '',
+    };
 
     const [selectStatus, setSelectStatus] = useState('Current');
 
@@ -19,6 +31,7 @@ function MyProfile() {
                 <div className="profileBox">
                     <div className="userBox">
                         <AvatarIcon
+                            user={tempUserData}
                             avatarSize='big'
                         />
                     </div>

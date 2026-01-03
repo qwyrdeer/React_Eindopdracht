@@ -1,25 +1,49 @@
 import './AvatarIcon.css';
-import ShinyIcon from "../../assets/Icons/SVG/ShinyIcon.svg";
-import NotShinyIcon from "../../assets/Icons/SVG/NotShinyYet.svg";
+import DefaultAvatar from '../../assets/AvatarImages/GruntAvatar1.jpg'
+
 import {Link} from "react-router-dom";
 
-function AvatarIcon({userAvatar, userId, username, avatarSize}) {
+function AvatarIcon({user, avatarSize}) {
 
-    const Size = {
-        small: {className: 'avatarSizeSmall', avatar: ShinyIcon},
-        normal: {className: 'avatarSizeNormal', avatar: NotShinyIcon},
-        big: {className: 'avatarSizeBig', avatar: NotShinyIcon}
-    };
+    let sizeClass = '';
 
-    const currentSize = Size[avatarSize] || Size.normal;
+    switch (avatarSize) {
+        case 'small':
+            sizeClass = 'avatarSizeSmall';
+            break;
+        case 'big':
+            sizeClass = 'avatarSizeBig';
+            break;
+        default:
+            sizeClass = 'avatarSizeNormal';
+    }
+
+    let boxStyling = 'userManagementBox';
+
+    switch (user?.UserRole) {
+        case 'Admin':
+            boxStyling += 'avatarBox avatarBox--admin';
+            break;
+        default:
+            boxStyling += 'avatarBox';
+            break;
+    }
+
+    switch (user?.Block) {
+        case 'Blocked':
+            boxStyling = 'avatarBox avatarBox--blocked';
+            break;
+        default:
+            break;
+    }
 
     return (
         <>
             <Link
-                to={`/user/${username}/${userId}`}
-                className={`avatarBox ${currentSize.className}`}
+                to={`/user/${user?.Username}/${user?.UserId}`}
+                className={`avatarBox ${boxStyling} ${sizeClass}`}
             >
-                    <div className="avatarComponentSizer"><img src={userAvatar} alt={username}/></div>
+                    <div className="avatarComponentSizer"><img src={user?.UserAvatar} alt={user?.Username}/></div>
             </Link>
         </>
     );

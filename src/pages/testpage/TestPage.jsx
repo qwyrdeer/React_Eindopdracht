@@ -20,6 +20,10 @@ import GalacticAvatar1 from "../../assets/AvatarImages/GruntAvatar1.jpg";
 import GalacticAvatar3 from "../../assets/AvatarImages/GruntAvatar3.jpg";
 import GalacticAvatar4 from "../../assets/AvatarImages/GruntAvatar4.jpg";
 
+// import MessageOverlay from "../../components/messageOverlay/MessageOverlay.jsx";
+import PopupTools from "../../components/popupTools/PopupTools.jsx";
+import MessageOverlay from "../../components/messageOverlay/MessageOverlay.jsx";
+
 
 function TestPage() {
 
@@ -137,7 +141,8 @@ function TestPage() {
                     FinishDate={randomHunt.FinishDate}
                     Encounters={randomHunt.Encounters}
                     HuntedGame={randomHunt.HuntedGame}/></div>
-
+                <MessageOverlay
+                Message= 'This is a testmessage'/>
                 <p>end of feed.</p>
             </div>
         </>

@@ -1,5 +1,5 @@
 import './AboutUs.css';
-import CardTestFlip from "../../components/huntCards/squareCard/CardTestFlip/CardTestFlip.jsx";
+
 function AboutUs() {
     return (
         <>

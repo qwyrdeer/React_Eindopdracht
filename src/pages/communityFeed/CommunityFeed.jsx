@@ -1,6 +1,5 @@
 import './CommunityFeed.css';
 
-import SquareCard from "../../components/huntCards/squareCard/SquareCard.jsx";
 import Rayquaza from '../../assets/PokemonGIF/rayquaza.gif'
 import Togepi from '../../assets/PokemonGIF/togepi.gif'
 import Alcremie from '../../assets/PokemonGIF/alcremie-rainbow-swirl-berry.gif'
@@ -18,15 +17,17 @@ import GalacticAvatar4 from '../../assets/AvatarImages/GruntAvatar4.jpg'
 import GalacticAvatar5 from '../../assets/AvatarImages/GruntAvatar5.jpg'
 
 import {useMemo} from "react";
+import SquareCard from "../../components/huntCards/squareCard/SquareCard.jsx";
 
 function CommunityFeed() {
 
     const Status = Object.freeze({
     PAST: {label: 'Recently hunted', icon: ShinyIcon},
     CURRENT: {label: 'Hunted right now', icon: NotShinyIcon},
-    FUTURE: {label: 'To be hunt', icon: NotShinyIcon}
+    FUTURE: {label: 'To hunt', icon: NotShinyIcon}
     });
 
+    // STRAKS OVERZETTEN NAAR API \/
     const cardHunts = [
         {PokemonGIF: Rayquaza, PokemonName: 'Rayquaza', DexID: 384, HuntStatus:(Status.PAST), UserId: 1, Username: 'Wessel', UserAvatar: GalacticAvatar5, StartDate: '01/06/2025', FinishDate: 'Today', Encounters: 2106, HuntedGame: 'Sword'},
         {PokemonGIF: Togepi, PokemonName: 'Togepi', DexID: 175, HuntStatus:(Status.FUTURE), UserId: 3, Username: 'Dennis', UserAvatar: GalacticAvatar2, StartDate: '', FinishDate: '', Encounters: 0, HuntedGame: 'Scarlet'},
@@ -38,33 +39,35 @@ function CommunityFeed() {
         {PokemonGIF: EternatusMax, PokemonName: 'Eternatus', DexID: 890, HuntStatus:(Status.CURRENT),UserId: 8, Username: 'Sanne', UserAvatar: GalacticAvatar2, StartDate: '01/01/2025', FinishDate: '', Encounters: 406, HuntedGame: 'X/Y'},
     ];
 
-    function getRandomHunt(hunts) {
+    const randomHunts = useMemo(() => {
         // eslint-disable-next-line react-hooks/purity
-        const randomIndex = Math.floor(Math.random() * hunts.length);
-        return hunts[randomIndex];
-    }
+        const shuffled = [...cardHunts].sort(() => 0.5 - Math.random());
+        return shuffled.slice(0, 6);
+    }, []);
 
-    const randomHunt= useMemo(() => getRandomHunt(cardHunts), []);
+    // STRAKS OVERZETTEN NAAR API /\
 
     return (
         <>
             <div><h1>community.</h1></div>
             <div className="fullCommunityPageBox">
-                <div className="a01">
-                    <SquareCard
-                        PokemonGIF={randomHunt.PokemonGIF}
-                        PokemonName={randomHunt.PokemonName}
-                        DexID={randomHunt.DexID}
-                        huntStatus={randomHunt.HuntStatus.label}
-                        statusIcon={randomHunt.HuntStatus.icon}
-                        UserId={randomHunt.UserId}
-                        Username={randomHunt.Username}
-                        UserAvatar={randomHunt.UserAvatar}
-                        StartDate={randomHunt.StartDate}
-                        FinishDate={randomHunt.FinishDate}
-                        Encounters={randomHunt.Encounters}
-                        HuntedGame={randomHunt.HuntedGame}/>
-                </div>
+                {randomHunts.map(hunter => (
+                    <div key={hunter.UserId} className="userManageBox">
+                        <SquareCard
+                            PokemonGIF={hunter.PokemonGIF}
+                            PokemonName={hunter.PokemonName}
+                            DexID={hunter.DexID}
+                            huntStatus={hunter.HuntStatus.label}
+                            statusIcon={hunter.HuntStatus.icon}
+                            UserId={hunter.UserId}
+                            Username={hunter.Username}
+                            UserAvatar={hunter.UserAvatar}
+                            StartDate={hunter.StartDate}
+                            FinishDate={hunter.FinishDate}
+                            Encounters={hunter.Encounters}
+                            HuntedGame={hunter.HuntedGame}/>
+                    </div>
+                ))}
             </div>
         </>
     );

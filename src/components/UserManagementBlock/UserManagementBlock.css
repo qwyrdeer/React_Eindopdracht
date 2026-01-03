@@ -8,6 +8,10 @@
     border: 6px solid #90c8c7;
 }
 
+.userManagementAvatarBox {
+    margin-right: 16px;
+}
+
 .userManagementBox--blocked {
     border: 6px solid #e32f6f;
 }
@@ -73,4 +77,9 @@
 .iconSizer img{
     display: block;
     width: 30px;
+    cursor: pointer;
+}
+
+.iconSizer--edit img {
+    cursor: pointer;
 }

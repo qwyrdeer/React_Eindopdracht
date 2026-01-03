@@ -1,5 +1,7 @@
 import './HorizontalCardMini.css';
-import {useMemo} from "react";
+import {useMemo, useState} from "react";
+import DeleteIcon from "../../../../assets/Icons/SVG/DeleteIcon.svg";
+import EditIconWhite from "../../../../assets/Icons/SVG/EditIconWhite.svg";
 
 function HorizontalCardMini() {
 
@@ -14,6 +16,10 @@ function HorizontalCardMini() {
         return classes[randomIndex];
     }
 
+    // for popup editting/deleting
+    const [deleteHunt, activateDeleteHunt] = useState(false)
+    const [editHunt, activateEditHunt] = useState(false)
+
     const randomHBackground = useMemo(() => getRandomClass(cardClasses), []);
 
     return (
@@ -21,7 +27,11 @@ function HorizontalCardMini() {
             <div className={`horizontalMiniBackground ${randomHBackground}`}>
                 <article className='horizontalMiniCard'>
                     <div className="cardMiniBorder">
-                    <p></p>
+                        <div className="huntBoxProfile">PKMN INFO deleted? {deleteHunt === true ? 'deleted' : 'not deleted'} but is it editted? {editHunt === true ? 'editted' : 'not editted'}</div>
+                        <div className="edittingToolBox">
+                            <div className="iconSizer" onClick={() => activateDeleteHunt(!deleteHunt)}><img src={DeleteIcon} alt="Delete icon"/></div>
+                            <div className="iconSizer--edit" onClick={() => activateEditHunt(!editHunt)}><img src={EditIconWhite} alt="Edit icon"/></div>
+                        </div>
                     </div>
                 </article>
             </div>

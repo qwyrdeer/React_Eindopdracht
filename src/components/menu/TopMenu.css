@@ -28,6 +28,7 @@
     flex-direction: row;
     align-items: center;
     padding-right: 10px;
+    z-index: 1;
 }
 
 .menuRight Button {

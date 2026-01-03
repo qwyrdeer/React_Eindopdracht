@@ -4,8 +4,14 @@ import TextOnlyButton from "../../components/button/TextOnlyButton/TextOnlyButto
 import {useState} from "react";
 import RadioButton from "../../components/button/RadioButton.jsx";
 import DoubleInput from "../../components/inputFields/DoubleInput.jsx";
+import { useForm } from 'react-hook-form';
+import { DevTool } from "@hookform/devtools";
 
 function AddHunt() {
+
+    // Voor error messages, installeren van useForm en DevTools?
+    const form = useForm();
+    const { register, control } = form
 
     // Bestanden versturen, aanpassing toevoegen via EdHub: https://edhub.novi.nl/study/courses/610/content/18806
 
@@ -28,13 +34,6 @@ function AddHunt() {
     function sendForm(e) {
         e.preventDefault()
         console.log({namePokemon, dexId, nameGame, nameMethod, previewUrl, radioStatus, huntEncounters})
-        // setNamePokemon('')
-        // setDexId(0)
-        // setNameGame('')
-        // setNameMethod('')
-        // setHuntEncounters(0)
-        // setRadioStatus('')
-        // setPreviewUrl('')
     }
 
 
@@ -106,6 +105,7 @@ function AddHunt() {
                             placeholder1="Name Pokémon you are hunting"
                             id1="pokemon"
                             setInputValue1={setNamePokemon}
+                            {...register("Name pokemon")}
                             inputStyle="doubleInputBox"
                             typeField2="number"
                             placeholder2="# DexID"
@@ -113,7 +113,8 @@ function AddHunt() {
                             maxNumber="1025"
                             minNumber="1"
                             setInputValue2={setDexId}
-                        />
+                            {...register("DexID")}
+                            />
 
                         {/*<div className="errorPlace">{inputError && <p className="uploadError">{inputError}</p>}</div>*/}
 
@@ -189,6 +190,7 @@ function AddHunt() {
                                 buttonName="Add hunt"/>
                         </div>
                     </form>
+                    <DevTool control={control}/>
                 </div>
             </div>
         </>
