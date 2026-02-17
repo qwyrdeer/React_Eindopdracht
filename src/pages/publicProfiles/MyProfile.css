@@ -1,26 +1,63 @@
 .fullProfilePageBox {
     display: flex;
-
+    justify-content: center;
+    height: 100vh;
+    margin-top: 50px;
+    flex-wrap: wrap;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .profileBox {
     display: flex;
+    flex-basis: 30%;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.profileBox h1{
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.userBox {
+    display: flex;
+    justify-content: center;
+    margin-right: 40px;
+}
+
+.textFieldsBox {
+    display: flex;
+    gap: 16px;
+    flex-direction: column;
     width: 50%;
-    height: 100vh;
-    border: red 1px solid;
+}
+
+.basicTextbox {
+    display: flex;
+    width: 400px;
+    align-items: center;
+    padding: 5px;
+    min-height: 50px;
+    border-radius: 3px;
+    background-color: #ffffff;
+    border: 5px solid #90c8c7;
+}
+
+.basicTextbox p{
+    color: #6d9898;
 }
 
 .huntProfileContainer{
     display: flex;
     justify-content: center;
     flex-basis: 50%;
-    border: red 1px solid;
 }
 
 .huntBox {
     display: flex;
     flex-direction: column;
-    overflow: hidden;
+    margin: 0 50px;
 }
 
 .huntBox h1{
@@ -29,11 +66,14 @@
 }
 
 .personalHunts {
-    height: 740px;
-    overflow: hidden;
-    overflow-y: scroll;
-    scroll-behavior: auto;
-    border: red 1px solid;
+    height: 700px;
+    overflow-y: auto;
+    padding-right: 10px;
+    scroll-behavior: smooth;
+}
+
+.personalHuntsBox {
+    display: flex;
 }
 
 .buttonHuntBox {

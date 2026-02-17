@@ -1,47 +1,62 @@
 import './CommunityFeed.css';
-import SquareCard from "../../components/huntCards/squareCard/SquareCard.jsx";
-import Rayquaza from '../../assets/PokemonGIF/rayquaza.gif'
-import Togepi from '../../assets/PokemonGIF/togepi.gif'
-import Alcremie from '../../assets/PokemonGIF/alcremie-rainbow-swirl-berry.gif'
-import Polteageist from '../../assets/PokemonGIF/polteageist.gif'
-import Rapidash from '../../assets/PokemonGIF/rapidash-galar.gif'
-import RagingBolt from '../../assets/PokemonGIF/ragingbolt.gif'
-import Eternatus from '../../assets/PokemonGIF/eternatus.gif'
-import EternatusMax from '../../assets/PokemonGIF/eternatus-eternamax.gif'
 
-import {useMemo} from "react";
+import axios from 'axios';
+import {useEffect, useState} from "react";
+import SquareCard from "../../components/huntCards/squareCard/SquareCard.jsx";
+import PopupTools from "../../components/popupTools/PopupTools.jsx";
+import keycloak from "../../auth/Keycloak.js";
 
 function CommunityFeed() {
 
-    const cardHunts = [
-        {PokemonGIF: Rayquaza, PokemonName: 'Rayquaza', DexID: 384},
-        {PokemonGIF: Togepi, PokemonName: 'Togepi', DexID: 175},
-        {PokemonGIF: Alcremie, PokemonName: 'Alcremie', DexID: 869},
-        {PokemonGIF: Polteageist, PokemonName: 'Polteageist', DexID: 855},
-        {PokemonGIF: RagingBolt, PokemonName: 'Raging Bolt', DexID: 1021},
-        {PokemonGIF: Rapidash, PokemonName: 'Rapidash', DexID: 78},
-        {PokemonGIF: Eternatus, PokemonName: 'Eternatus', DexID: 890},
-        {PokemonGIF: EternatusMax, PokemonName: 'Eternatus', DexID: 890},
-    ];
+    const [popupOpen, setPopupOpen] = useState(false);
+    const [activeTool, setActiveTool] = useState('');
+    const [activeHunt, setActiveHunt] = useState('');
 
-    function getRandomHunt(hunts) {
-        // eslint-disable-next-line react-hooks/purity
-        const randomIndex = Math.floor(Math.random() * hunts.length);
-        return hunts[randomIndex];
-    }
+    const [allPokemon, setAllPokemon] = useState(null);
+    const [error, setError] = useState(false);
 
-    const randomHunt= useMemo(() => getRandomHunt(cardHunts), []);
+    useEffect(() => {
+        const controller = new AbortController();
+
+        async function fetchPokemon() {
+            try {
+                setError(false);
+                const response = await axios.get("http://localhost:8080/hunts", { headers: {
+                        "Authorization":  "Bearer " + keycloak.token, signal: controller.signal
+                    }});
+                setAllPokemon(response.data.results);
+            } catch (e) {
+                console.error(e);
+                setError(true);
+            }
+        }
+
+        fetchPokemon();
+        return function cleanup() {
+            controller.abort();
+        }
+    }, );
 
     return (
         <>
-            <div><h1>community.</h1></div>
+            <div><h1>community.</h1><PopupTools
+                open={popupOpen}
+                toolManager={activeTool}
+                hunt={activeHunt}
+                onClose={() => setPopupOpen(false)}/></div>
             <div className="fullCommunityPageBox">
-                <div className="a01">
-                    <SquareCard
-                        PokemonGIF={randomHunt.PokemonGIF}
-                        PokemonName={randomHunt.PokemonName}
-                        DexID={randomHunt.DexID}/>
-                </div>
+                {error ? <p>Er is een fout opgetreden</p> : ''}
+                {allPokemon?.map(huntCard => (
+                    <div key={huntCard.id}>
+                        <SquareCard
+                            hunt={huntCard}
+                            onToolClick={(toolManager, huntCard) => {
+                                setActiveTool(toolManager);
+                                setActiveHunt(huntCard);
+                                setPopupOpen(true);
+                            }}/>
+                    </div>
+                ))}
             </div>
         </>
     );

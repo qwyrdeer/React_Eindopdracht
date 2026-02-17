@@ -6,12 +6,11 @@ import RadioButton from "../../components/button/RadioButton.jsx";
 import DoubleInput from "../../components/inputFields/DoubleInput.jsx";
 
 function AddHunt() {
-
     // Bestanden versturen, aanpassing toevoegen via EdHub: https://edhub.novi.nl/study/courses/610/content/18806
 
     const [previewUrl, setPreviewUrl] = useState('');
     const [error, setError] = useState('');
-    const MAX_FILE_SIZE = 1_100_000;
+    const MAX_FILE_SIZE = 2_000_000;
 
     const [namePokemon, setNamePokemon] = useState('');
     const [dexId, setDexId] = useState(0);
@@ -19,30 +18,15 @@ function AddHunt() {
     const [nameMethod, setNameMethod] = useState('');
     const [huntEncounters, setHuntEncounters] = useState(0);
 
-    const [radioStatus, setRadioStatus] = useState('');
+    const [radioStatus, setRadioStatus] = useState("Current");
 
-    const handleChangePast = () => {
-        setRadioStatus("Past");
-    };
-
-    const handleChangeCurrent = () => {
-        setRadioStatus("Current");
-    };
-
-    const handleChangeFuture = () => {
-        setRadioStatus("Future");
+    const handleSelect = (status) => {
+        setRadioStatus(status);
     };
 
     function sendForm(e) {
         e.preventDefault()
         console.log({namePokemon, dexId, nameGame, nameMethod, previewUrl, radioStatus, huntEncounters})
-        // setNamePokemon('')
-        // setDexId(0)
-        // setNameGame('')
-        // setNameMethod('')
-        // setHuntEncounters(0)
-        // setRadioStatus('')
-        // setPreviewUrl('')
     }
 
 
@@ -101,6 +85,8 @@ function AddHunt() {
         setPreviewUrl(URL.createObjectURL(file));
     };
 
+
+
     return (
         <>
             <div className="fullAddHuntPageBox">
@@ -119,7 +105,8 @@ function AddHunt() {
                             maxNumber="1025"
                             minNumber="1"
                             setInputValue2={setDexId}
-                        />
+                            />
+
                         <InputFieldBasic
                             typeField="text"
                             placeholder="What game are you hunting in?"
@@ -139,25 +126,20 @@ function AddHunt() {
                             <RadioButton
                                 radioName="huntStatus"
                                 radioOption="Past"
-                                selectedStatus={radioStatus}
-                                setRadioSelection={setRadioStatus}
-                                handleClick={handleChangePast}
+                                onClick={() => handleSelect('Past')}
                             /></span>
                             <span className="radioBasis">
                             <RadioButton
                                 radioName="huntStatus"
                                 radioOption="Current"
-                                selectedStatus={radioStatus}
-                                setRadioSelection={setRadioStatus}
-                                handleClick={handleChangeCurrent}
+                                defaultChecked="true"
+                                onClick={() => handleSelect('Current')}
                             /></span>
                                 <span className="radioBasis">
                             <RadioButton
                                 radioName="huntStatus"
                                 radioOption="Future"
-                                selectedStatus={radioStatus}
-                                setRadioSelection={setRadioStatus}
-                                handleClick={handleChangeFuture}
+                                onClick={() => handleSelect('Future')}
                             /></span>
                         </div>
                         {radioStatus === "Past" ?
@@ -189,7 +171,6 @@ function AddHunt() {
                             />
                         </label>
                         <div className="errorPlace">{error && <p className="uploadError">{error}</p>}</div>
-
 
                         <div className="buttonBox addHuntButton">
                             <TextOnlyButton

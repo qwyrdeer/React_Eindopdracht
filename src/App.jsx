@@ -1,21 +1,21 @@
 import React from "react"
 import './App.css'
-import { Routes, Route } from 'react-router-dom';
+import {Routes, Route} from 'react-router-dom';
 
 import Home from './pages/home/Home.jsx'
 import NotFound from "./pages/notFound/NotFound.jsx";
 import CommunityFeed from "./pages/communityFeed/CommunityFeed.jsx";
-import Login from "./pages/entryPages(Reg_Login)/login/Login.jsx";
+import Login from "./pages/loginPages/login/Login.jsx";
 
 import TopMenu from "./components/menu/TopMenu.jsx";
 import SideMenu from "./components/menu/SideMenu.jsx";
-import Register from "./pages/entryPages(Reg_Login)/register/Register.jsx";
-import ForgotPassword from "./pages/entryPages(Reg_Login)/forgotPassword/ForgotPassword.jsx";
+import Register from "./pages/loginPages/register/Register.jsx";
+import ForgotPassword from "./pages/loginPages/forgotPassword/ForgotPassword.jsx";
 import AddHunt from "./pages/addHunt/AddHunt.jsx";
 import AboutUs from "./pages/aboutUs/AboutUs.jsx";
 import Settings from "./pages/settings/Settings.jsx";
 import ManageCommunity from "./pages/adminPages/manageCommunity/ManageCommunity.jsx";
-import ResetPassword from "./pages/entryPages(Reg_Login)/resetPassword/ResetPassword.jsx";
+import ResetPassword from "./pages/loginPages/resetPassword/ResetPassword.jsx";
 import MyProfile from "./pages/publicProfiles/MyProfile.jsx";
 import UserProfile from "./pages/publicProfiles/UserProfile.jsx";
 import TestPage from "./pages/testpage/TestPage.jsx";
@@ -33,7 +33,7 @@ function App() {
                 <main className="pageContent">
                     <Routes>
                         <Route path="/" element={<Home/>}/>
-                        <Route path="/community-feed" element={<CommunityFeed/>}/>
+                        <Route path="/community-feed" element={<CommunityFeed />}/>
                         <Route path="/add-hunt" element={<AddHunt/>}/>
                         <Route path="/about-us" element={<AboutUs/>}/>
                         <Route path="/my-profile" element={<MyProfile/>}/>

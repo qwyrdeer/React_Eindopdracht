@@ -1,0 +1,85 @@
+.userManagementBox {
+    display: flex;
+    flex-direction: column;
+    width: 600px;
+    height: 85px;
+    border-radius: 15px;
+    background-color: #ffffff;
+    border: 6px solid #90c8c7;
+}
+
+.userManagementAvatarBox {
+    margin-right: 16px;
+}
+
+.userManagementBox--blocked {
+    border: 6px solid #e32f6f;
+}
+
+.userManagementBox--admin {
+    border: 6px solid #8673ae;
+}
+
+.userToolBox {
+    display: flex;
+    flex-grow: 1;
+}
+
+.userInfobox {
+    display: flex;
+    flex-direction: column;
+    border: red 1px solid;
+}
+
+.userInfoBox p{
+    display: flex;
+    padding-top: 5px;
+    padding-left: 5px;
+}
+
+.userDatabox {
+    display: flex;
+    flex-direction: column;
+    border: red 1px solid;
+}
+
+.userRolebox {
+    display: flex;
+    flex-direction: column;
+    border: red 1px solid;
+}
+
+.userAccessbox {
+    display: flex;
+    flex-direction: column;
+    border: red 1px solid;
+}
+
+.managingToolBox {
+    display: flex;
+    width: 100%;
+    height: 30px;
+    flex-direction: row;
+    border: red 1px solid;
+}
+
+.iconSizer {
+    display: flex;
+    width: 30px;
+}
+
+.iconSizer--edit {
+    display: flex;
+    width: 100%;
+    flex-direction: row-reverse;
+}
+
+.iconSizer img{
+    display: block;
+    width: 30px;
+    cursor: pointer;
+}
+
+.iconSizer--edit img {
+    cursor: pointer;
+}

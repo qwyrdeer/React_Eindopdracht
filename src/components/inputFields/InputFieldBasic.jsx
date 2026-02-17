@@ -6,6 +6,7 @@ return (
              placeholder={placeholder}
              className={inputStyle}
              id={id}
+             max="99999"
              onChange={(e) => setInputValue(e.target.value)}
       />
   </>
