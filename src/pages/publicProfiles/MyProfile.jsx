@@ -99,6 +99,7 @@ function MyProfile() {
                                 onClick={() => handleSelect('Future')}
                                 type='button'/>
                         </div>
+
                         <div className="personalHunts">
                             {currentUser?.map(hunts => (
                                 <div key={hunts?.id} className="personalHuntsBox">
