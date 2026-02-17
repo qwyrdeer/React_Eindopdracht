@@ -4,8 +4,8 @@ import keycloak from "./keycloak";
 export default function AuthProvider({ children }) {
 
     //moeten false zijn
-    const [keycloakReady, setKeycloakReady] = useState(true);
-    const [isAuthenticated, setIsAuthenticated] = useState(true);
+    const [keycloakReady, setKeycloakReady] = useState(false);
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
 
     useEffect(() => {
 
