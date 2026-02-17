@@ -14,14 +14,14 @@ function ManageCommunity() {
 
     // STRAKS API IPV DIT \/
     const userList = [
-        {UserId: 1, Username: 'Wessel', UserAvatar: GalacticAvatar5, RegisterDate: '01/06/2025', LastLoginDate: 'Today', Email: 'xx@xx.nl', UserRole: 'Admin', Block: ''},
-        {UserId: 3, Username: 'Dennis', UserAvatar: GalacticAvatar2, RegisterDate: '', LastLoginDate: '', Email: 'xx@xx.nl', UserRole: 'Member', Block: ''},
-        {UserId: 2, Username: 'Erick', UserAvatar: GalacticAvatar1, RegisterDate: '01/01/2025', LastLoginDate: '', Email: 'xx@xx.nl', UserRole: 'Member', Block: ''},
-        {UserId: 4, Username: 'Mat', UserAvatar: GalacticAvatar2, RegisterDate: '01/02/2025', LastLoginDate: 'Today', Email: 'xx@xx.nl', UserRole: 'Admin', Block: 'Blocked'},
-        {UserId: 5, Username: 'Renee', UserAvatar: GalacticAvatar3, RegisterDate: '', LastLoginDate: '', Email: 'xx@xx.nl', UserRole: 'Member', Block: ''},
-        {UserId: 6, Username: 'Bella', UserAvatar: GalacticAvatar4, RegisterDate: '01/01/2025', LastLoginDate: 'Today', Email: 'xx@xx.nl', UserRole: 'Member', Block: 'Blocked'},
-        {UserId: 7, Username: 'Kim', UserAvatar: GalacticAvatar4, RegisterDate: '', LastLoginDate: '', Email: 'xx@xx.nl', UserRole: 'Member', Block: ''},
-        {UserId: 8, Username: 'Sanne', UserAvatar: GalacticAvatar2, RegisterDate: '01/01/2025', LastLoginDate: '', Email: 'xx@xx.nl', UserRole: 'Member', Block: ''},
+        {UserId: 1, username: 'Wessel', avatar: GalacticAvatar5, RegisterDate: '01/06/2025', LastLoginDate: 'Today', Email: 'xx@xx.nl', UserRole: 'Admin', Block: ''},
+        {UserId: 3, username: 'Dennis', avatar: GalacticAvatar2, RegisterDate: '01/06/2025', LastLoginDate: '', Email: 'xx@xx.nl', UserRole: 'Member', Block: ''},
+        {UserId: 2, username: 'Erick', avatar: GalacticAvatar1, RegisterDate: '01/01/2025', LastLoginDate: '', Email: 'xx@xx.nl', UserRole: 'Member', Block: ''},
+        {UserId: 4, username: 'Mat', avatar: GalacticAvatar2, RegisterDate: '01/02/2025', LastLoginDate: 'Today', Email: 'xx@xx.nl', UserRole: 'Admin', Block: 'Blocked'},
+        {UserId: 5, username: 'Renee', avatar: GalacticAvatar3, RegisterDate: '01/06/2025', LastLoginDate: '', Email: 'xx@xx.nl', UserRole: 'Member', Block: ''},
+        {UserId: 6, username: 'Bella', avatar: GalacticAvatar4, RegisterDate: '01/01/2025', LastLoginDate: 'Today', Email: 'xx@xx.nl', UserRole: 'Member', Block: 'Blocked'},
+        {UserId: 7, username: 'Kim', avatar: GalacticAvatar4, RegisterDate: '01/06/2025', LastLoginDate: '', Email: 'xx@xx.nl', UserRole: 'Member', Block: ''},
+        {UserId: 8, username: 'Sanne', avatar: GalacticAvatar2, RegisterDate: '01/01/2025', LastLoginDate: '', Email: 'xx@xx.nl', UserRole: 'Member', Block: ''},
     ];
 
     const randomUsers = useMemo(() => {

@@ -6,6 +6,7 @@ import DeleteIcon from '../../assets/Icons/SVG/DeleteIcon.svg'
 import AvatarIcon from "../avatar/AvatarIcon.jsx";
 
 function UserManagementBlock({ user, onToolClick }) {
+
     const {
         Username,
         Email,

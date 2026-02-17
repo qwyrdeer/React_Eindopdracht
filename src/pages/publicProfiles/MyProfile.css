@@ -72,6 +72,10 @@
     scroll-behavior: smooth;
 }
 
+.personalHuntsBox {
+    display: flex;
+}
+
 .buttonHuntBox {
     display: flex;
     width: 550px;

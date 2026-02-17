@@ -32,8 +32,10 @@
 
 .horizontalMiniBackground {
     border-radius: 15px;
-
+    height: 230px;
+    width: 551px;
     Background-color: rgba(147, 112, 219, 0.5);
+    margin-bottom: 16px;
 }
 
 .horizontalBackground1 {

@@ -1,5 +1,4 @@
 import './AvatarIcon.css';
-import DefaultAvatar from '../../assets/AvatarImages/GruntAvatar1.jpg'
 
 import {Link} from "react-router-dom";
 
@@ -40,10 +39,10 @@ function AvatarIcon({user, avatarSize}) {
     return (
         <>
             <Link
-                to={`/user/${user?.Username}/${user?.UserId}`}
+                to={`/user/${user?.username}/${user?.userId}`}
                 className={`avatarBox ${boxStyling} ${sizeClass}`}
             >
-                    <div className="avatarComponentSizer"><img src={user?.UserAvatar} alt={user?.Username}/></div>
+                    <div className="avatarComponentSizer"><img src={user?.userAvatarUrl} alt={user?.username}/></div>
             </Link>
         </>
     );
