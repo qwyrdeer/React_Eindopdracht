@@ -1,13 +1,15 @@
 import './AddHunt.css';
 import InputFieldBasic from "../../components/inputFields/InputFieldBasic.jsx";
 import TextOnlyButton from "../../components/button/TextOnlyButton/TextOnlyButton.jsx";
-import {useState} from "react";
+import {useContext, useState} from "react";
 import RadioButton from "../../components/button/RadioButton.jsx";
 import DoubleInput from "../../components/inputFields/DoubleInput.jsx";
-import keycloak from "../../auth/Keycloak.js";
-import axios from "../../../src/config/axiosConfig.js";
+import axios from "axios";
+import {AuthContext} from "../../auth/AuthProvider.jsx";
 
 function AddHunt() {
+    const { auth } = useContext(AuthContext);
+
     const [previewUrl, setPreviewUrl] = useState('');
     const [error, setError] = useState('');
     const MAX_FILE_SIZE = 2_000_000;
@@ -66,10 +68,11 @@ function AddHunt() {
             console.log('data:', huntData);
             console.log('file:', file ? file.name : 'none');
 
+            await auth.kc.updateToken(60);
             const response = await axios.post('http://localhost:8080/hunts', formData, {
                 headers: {
                     "Content-Type": "multipart/form-data",
-                    "Authorization": `Bearer ${keycloak.token}`
+                    "Authorization": `Bearer ${auth.kc.token}`
                 },
             });
 

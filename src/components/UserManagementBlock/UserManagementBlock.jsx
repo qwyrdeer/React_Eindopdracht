@@ -5,16 +5,7 @@ import EditIcon from '../../assets/Icons/SVG/EditIcon.svg'
 import DeleteIcon from '../../assets/Icons/SVG/DeleteIcon.svg'
 import AvatarIcon from "../avatar/AvatarIcon.jsx";
 
-function UserManagementBlock({ user, onToolClick }) {
-
-    const {
-        Username,
-        Email,
-        RegisterDate,
-        LastLoginDate,
-        UserRole,
-        Block
-    } = user;
+function UserManagementBlock({ target, onToolClick }) {
 
     const USER_TOOLS = {
         DELETE: 'delete',
@@ -24,50 +15,49 @@ function UserManagementBlock({ user, onToolClick }) {
 
     let boxStyling = 'userManagementBox';
 
-    switch (user.UserRole) {
-        case 'Admin':
+    switch (target.user?.userRole) {
+        case "ROLE_ADMIN":
             boxStyling += ' userManagementBox--admin';
             break;
         default:
             break;
     }
 
-    switch (user.Block) {
-        case 'Blocked':
-            boxStyling = 'userManagementBox userManagementBox--blocked';
-            break;
-        default:
-            break;
-    }
+    // switch (target.block) {
+    //     case 'Blocked':
+    //         boxStyling = 'userManagementBox userManagementBox--blocked';
+    //         break;
+    //     default:
+    //         break;
+    // }
 
     return (
         <>
             <div className="userManagementAvatarBox"><AvatarIcon
                 avatarSize='normal'
-                user={user}
+                user={target}
             />
             </div>
             <div className={boxStyling}>
                 <div className="userToolBox">
                 <div className="userInfobox">
-                    <p>Username: {Username}</p>
-                    <p>Email: {Email}</p>
+                    <p>Username: {target.username}</p>
                 </div>
                     <div className="userDatabox">
-                        <p>Create date: {RegisterDate}</p>
-                        <p>Last login: {LastLoginDate}</p>
+                        <p>Create date: {target?.createdAt}</p>
+                        <p>Last login: {target.lastLoginDate}</p>
                     </div>
-                    <div className="userRolebox">
-                        <p>User role: {UserRole}</p>
-                    </div>
-                    <div className="userAccessbox">
-                        <p>Blocked? {Block}</p>
-                    </div>
+                    {/*<div className="userRolebox">*/}
+                    {/*    <p>User role: {user.userRole}</p>*/}
+                    {/*</div>*/}
+                    {/*<div className="userAccessbox">*/}
+                    {/*    <p>Blocked? {Block}</p>*/}
+                    {/*</div>*/}
                 </div>
                 <div className="managingToolBox">
-                    <div className="iconSizer"><img src={DeleteIcon} alt="Delete icon" onClick={() => onToolClick(USER_TOOLS.DELETE, user)}/></div>
-                    <div className="iconSizer"><img src={BlockIcon} alt="Block icon" onClick={() => onToolClick(USER_TOOLS.BLOCK, user)}/></div>
-                    <div className="iconSizer--edit"><img src={EditIcon} alt="Edit icon" onClick={() => onToolClick(USER_TOOLS.EDIT, user)}/></div>
+                    <div className="iconSizer"><img src={DeleteIcon} alt="Delete icon" onClick={() => onToolClick(USER_TOOLS.DELETE, target)}/></div>
+                    <div className="iconSizer"><img src={BlockIcon} alt="Block icon" onClick={() => onToolClick(USER_TOOLS.BLOCK, target)}/></div>
+                    <div className="iconSizer--edit"><img src={EditIcon} alt="Edit icon" onClick={() => onToolClick(USER_TOOLS.EDIT, target)}/></div>
                 </div>
             </div>
         </>

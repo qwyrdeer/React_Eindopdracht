@@ -1,7 +1,6 @@
-import React, {useEffect, useState} from "react"
+import React from "react"
 import './App.css'
 import {Routes, Route} from 'react-router-dom';
-import keycloak from "./auth/Keycloak.js";
 
 import Home from './pages/home/Home.jsx'
 import NotFound from "./pages/notFound/NotFound.jsx";
@@ -22,19 +21,6 @@ import UserProfile from "./pages/publicProfiles/UserProfile.jsx";
 import TestPage from "./pages/testpage/TestPage.jsx";
 
 function App() {
-    const [isInitialized, setIsInitialized] = useState(true);
-
-    useEffect(() => {
-        keycloak.init({ onLoad: 'login-required' }).then((authenticated) => {
-            if (authenticated) {
-                setIsInitialized(true);
-            }
-        });
-    }, []);
-
-    if (!isInitialized) {
-        return <div>Loading...</div>;
-    }
 
   return (
     <>
@@ -51,7 +37,7 @@ function App() {
                         <Route path="/add-hunt" element={<AddHunt/>}/>
                         <Route path="/about-us" element={<AboutUs/>}/>
                         <Route path="/my-profile" element={<MyProfile/>}/>
-                        <Route path="/userProfile/:id" element={<UserProfile/>}/>
+                        <Route path="/users/profile/:username" element={<UserProfile/>}/>
                         <Route path="/manage-community" element={<ManageCommunity/>}/>
                         <Route path="/settings" element={<Settings/>}/>
                         <Route path="/login" element={<Login/>}/>

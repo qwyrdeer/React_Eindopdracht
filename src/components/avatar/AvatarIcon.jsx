@@ -1,8 +1,15 @@
 import './AvatarIcon.css';
 
 import {Link} from "react-router-dom";
+import {useContext} from "react";
+import {AuthContext} from "../../auth/AuthProvider.jsx";
 
 function AvatarIcon({user, avatarSize}) {
+
+    console.log('User object:', user);
+    console.log('Avatar URL:', `http://localhost:8080${user?.userAvatarUrl}`);
+
+    const { auth } = useContext(AuthContext);
 
     let sizeClass = '';
 
@@ -17,33 +24,40 @@ function AvatarIcon({user, avatarSize}) {
             sizeClass = 'avatarSizeNormal';
     }
 
-    let boxStyling = 'userManagementBox';
+    let boxStyling = 'avatarBox';
 
-    switch (user?.UserRole) {
-        case 'Admin':
-            boxStyling += 'avatarBox avatarBox--admin';
-            break;
-        default:
-            boxStyling += 'avatarBox';
-            break;
-    }
-
-    switch (user?.Block) {
-        case 'Blocked':
-            boxStyling = 'avatarBox avatarBox--blocked';
+    switch (user?.userRole) {
+        case "ROLE_ADMIN":
+            boxStyling += ' avatarBox--admin';
             break;
         default:
             break;
     }
+
+    // switch (user?.Block) {
+    //     case 'Blocked':
+    //         boxStyling = 'avatarBox avatarBox--blocked';
+    //         break;
+    //     default:
+    //         break;
+    // }
 
     return (
         <>
-            <Link
-                to={`/user/${user?.username}/${user?.userId}`}
-                className={`avatarBox ${boxStyling} ${sizeClass}`}
-            >
-                    <div className="avatarComponentSizer"><img src={user?.userAvatarUrl} alt={user?.username}/></div>
-            </Link>
+            {user?.username === auth.kc?.tokenParsed?.preferred_username ?
+                <Link
+                    to={`/my-profile`}
+                    className={`${boxStyling} ${sizeClass}`}
+                >
+                    <div className="avatarComponentSizer"><img src={`http://localhost:8080${user?.userAvatarUrl}`} alt={user?.username}/></div>
+                </Link>
+                :
+                <Link
+                    to={`/users/profile/${user?.username}`}
+                    className={`${boxStyling} ${sizeClass}`}
+                >
+                    <div className="avatarComponentSizer"><img src={`http://localhost:8080${user?.userAvatarUrl}`} alt={user?.username}/></div>
+                </Link>}
         </>
     );
 }

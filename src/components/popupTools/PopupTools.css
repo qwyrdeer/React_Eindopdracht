@@ -25,3 +25,15 @@
     background-color: #5b5c5c;
     z-index: 1;
 }
+
+.popAvatarBox {
+    display: flex;
+    align-items: center;
+    background-color: #ffffff;
+    border: 6px solid #90c8c7;
+    border-radius: 15px;
+    text-decoration: none;
+    cursor: pointer;
+    width: 115px;
+    height: 115px;
+}

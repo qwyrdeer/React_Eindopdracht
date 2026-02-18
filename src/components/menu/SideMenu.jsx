@@ -1,19 +1,20 @@
 import './SideMenu.css';
 
 import CommunityPagesIcon from '../../assets/Icons/SVG/GroupIcon.svg'
-import MyHuntIcons from '../../assets/Icons/SVG/SearchIcon.svg'
 import AddHuntIcon from '../../assets/Icons/SVG/PlusIcon.svg'
 import AboutUsIcon from '../../assets/Icons/SVG/InfoIcon.svg'
 import UserManagementIcon from '../../assets/Icons/SVG/ManageUserIcon.svg'
 import Button from "../button/Button.jsx";
-import React, {useState} from "react";
+import React, {useContext, useState} from "react";
 import HamburgerIcon from "../../assets/Icons/SVG/MenuIcon.svg";
 import UserInsightIcon from "../../assets/Icons/SVG/UserInsightIcon.svg"
-import {Route, useNavigate} from "react-router-dom";
-import SettingsIcon from "../../assets/Icons/SVG/SettingsIcon.svg";
+import {useNavigate} from "react-router-dom";
+import {AuthContext} from "../../auth/AuthProvider.jsx";
 
 
 function SideMenu () {
+    const { auth } = useContext(AuthContext);
+    const isAdmin = auth.kc?.tokenParsed?.resource_access?.galacticEndgame?.roles?.includes("ROLE_ADMIN");
 
     const [openMenu, toggleOpenMenu] = useState (false);
     const navigate = useNavigate();
@@ -60,19 +61,15 @@ return (
                       buttonName={openMenu === true ? 'About us' : null}
                   /></li>
               </ul>
+
               <div className="adminLeftMenu">
-                  <Button
-                      buttonIcon={SettingsIcon}
-                      buttonStyle={openMenu === false ? "baseButton menuSmallManageButton" : "baseButton menuManageButton"}
-                      onClick={() => navigate("/testpage")}
-                      buttonName={openMenu === true ? 'Test page' : null}
-                  />
-              <Button
-                  buttonIcon={UserManagementIcon}
-                  buttonStyle={openMenu === false ? "baseButton menuSmallManageButton" : "baseButton menuManageButton"}
-                  onClick={() => navigate("/manage-community")}
-                  buttonName={openMenu === true ? 'Manage community' : null}
-              />
+                  {isAdmin &&
+                      <Button
+                          buttonIcon={UserManagementIcon}
+                          buttonStyle={openMenu === false ? "baseButton menuSmallManageButton" : "baseButton menuManageButton"}
+                          onClick={() => navigate("/manage-community")}
+                          buttonName={openMenu === true ? 'Manage community' : null}
+                      />}
               </div>
           </div>
       </nav>

@@ -22,12 +22,14 @@
 
 .userBox {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: flex-start;
     margin-right: 40px;
 }
 
 .textFieldsBox {
     display: flex;
+    flex-basis: 400px;
     gap: 16px;
     flex-direction: column;
     width: 50%;
@@ -46,6 +48,13 @@
 
 .basicTextbox p{
     color: #6d9898;
+}
+
+.editProfileBox {
+    display: flex;
+    flex-basis: 40px;
+    justify-content: flex-end;
+    padding-top: 10px;
 }
 
 .huntProfileContainer{

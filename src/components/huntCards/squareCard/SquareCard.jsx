@@ -29,14 +29,13 @@ function SquareCard({hunt, onToolClick}) {
         FUTURE: { label: 'To hunt', icon: NotShinyIcon }
     };
 
-    const status = HUNT_STATUS_MAP[hunt.status];
+    const status = HUNT_STATUS_MAP[hunt?.huntStatus];
 
     function getRandomClass(classes) {
         // eslint-disable-next-line react-hooks/purity
         const randomIndex = Math.floor(Math.random() * classes.length);
         return classes[randomIndex];
     }
-
 
     const randomBackground = useMemo(() => getRandomClass(cardClasses), []);
     const [isFlipped, setIsFlipped] = useState(false);
@@ -52,14 +51,14 @@ function SquareCard({hunt, onToolClick}) {
                             <div className="cardBorder">
                                 <div className="huntDetails">
                                     <div className="statusBox">
-                                        <h3>{hunt.huntStatus.label}</h3>
+                                        <h3>{hunt.huntStatus}</h3>
                                         <div className="statusIcon">
-                                            <img src={status.icon} alt={hunt.huntStatus.label}/>
+                                            <img src={status?.icon} alt={hunt.huntStatus.label}/>
                                         </div>
                                     </div>
                                     <div className="huntContainer">
                                         <div className="huntGIFSizer">
-                                            <img src={hunt.pokemon.shinyImg} alt={hunt.pokemon.name}/>
+                                            <img src={`http://localhost:8080${hunt.pokemon.shinyImg}`} alt={hunt.pokemon.name}/>
                                         </div>
                                     </div>
 
@@ -81,11 +80,12 @@ function SquareCard({hunt, onToolClick}) {
                             <div className="cardBorder">
                                 <div className="huntDetailsBack">
                                     <div className="statusBoxBack">
-                                        <div className="profileRedirection"><AvatarIcon
+                                        <div className="profileRedirection">
+                                            <AvatarIcon
                                             avatarSize="normal"
-                                            user={hunt.userId}
+                                            user={hunt.user}
                                             />
-                                            <h3>{status.label} by {hunt.username}</h3>
+                                            <h3>{status?.label} by {hunt.user.username}</h3>
                                         </div>
                                     </div>
                                     <div className="huntContainerBack">
@@ -96,7 +96,7 @@ function SquareCard({hunt, onToolClick}) {
                                     </div>
 
                                     <div className="infoContainerBack">
-                                        {hunt.hunt.createDate === '' ? <p>Hunt not yet started</p> :
+                                        {hunt.createDate === '' ? <p>Hunt not yet started</p> :
                                             <p> Started: {hunt.createDate}</p>}
                                         {hunt.finishDate === '' ?
                                             <p>{hunt.createDate === '' ? '' : 'Not yet finished'}</p> :
@@ -104,8 +104,7 @@ function SquareCard({hunt, onToolClick}) {
                                     </div>
                                     <div className="toolIconBoxSC">
                                         <div className="iconSizerSC"
-                                             onClick={() => onToolClick(USER_TOOLS.DELETE, hunt)}><img src={DeleteIcon}
-                                                                                                       alt="Delete icon"/>
+                                             onClick={() => onToolClick(USER_TOOLS.DELETE, hunt)}><img src={DeleteIcon} alt="Delete icon"/>
                                         </div>
                                         <div className="iconSizerSC" onClick={() => onToolClick(USER_TOOLS.EDIT, hunt)}>
                                             <img src={EditIconWhite} alt="Edit icon"/></div>

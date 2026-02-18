@@ -1,16 +1,17 @@
 import './TopMenu.css';
 
 import GalacticLogo from "../../assets/TopMenu/pokemon_team_galactic_logo_by_biochao_dezrrpg-fullview.png"
-import Button from "../button/Button.jsx";
-import {useState} from "react";
+import {useContext} from "react";
 import {useNavigate, NavLink} from "react-router-dom";
 import TextOnlyButton from "../button/TextOnlyButton/TextOnlyButton.jsx";
-
+import {AuthContext} from "../../auth/AuthProvider.jsx";
 
 function TopMenu() {
 
-    const [loggedIn, toggleLoggedIn] = useState (false);
     const navigate = useNavigate();
+    const {auth, login, logout} = useContext(AuthContext)
+
+    console.log(auth);
 
 return (
   <>
@@ -18,13 +19,12 @@ return (
         <div className="leftTopSide"></div>
         <NavLink to="/community-feed"><img src={GalacticLogo} alt="Logo Team Galactic" className="galacticLogo"/></NavLink>
         <div className="menuRight">
-            {loggedIn === false ?
+            {!auth.isAuth ?
                 <span className="notLoggedIn">
-
                 <TextOnlyButton
                     buttonName="Login"
                     buttonStyle="baseTextonlyButton"
-                    onClick={() => navigate("/login")}
+                    onClick={login}
                 />
                 <TextOnlyButton
                     buttonName="Register"
@@ -35,6 +35,7 @@ return (
                 <TextOnlyButton
                 buttonName="Online!"
                 buttonStyle="baseButton menuTopButton"
+                onClick={logout}
                 />
             }
         </div>

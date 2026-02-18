@@ -2,14 +2,17 @@ import './MyProfile.css';
 import TextOnlyButton from "../../components/button/TextOnlyButton/TextOnlyButton.jsx";
 import HorizontalCardMini from "../../components/huntCards/horizontalCard/HorizontalCardMini/HorizontalCardMini.jsx";
 import AvatarIcon from "../../components/avatar/AvatarIcon.jsx";
-import {useEffect, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import PopupTools from "../../components/popupTools/PopupTools.jsx";
 import ShinyIcon from "../../assets/Icons/SVG/ShinyIcon.svg";
 import NotShinyIcon from "../../assets/Icons/SVG/NotShinyYet.svg";
 import axios from "axios";
-import keycloak from "../../auth/Keycloak.js";
+import {AuthContext} from "../../auth/AuthProvider.jsx";
+import SquareCard from "../../components/huntCards/squareCard/SquareCard.jsx";
+import EditIcon from "../../assets/Icons/SVG/EditIcon.svg"
 
 function MyProfile() {
+    const { auth } = useContext(AuthContext);
 
     const Status = Object.freeze({
         PAST: {label: 'Recently hunted', icon: ShinyIcon},
@@ -18,18 +21,21 @@ function MyProfile() {
     });
 
     const [currentUser, setCurrentUser] = useState(null);
+
     const [error, setError] = useState(false);
 
     useEffect(() => {
+        if (!auth.kc) return;
         const controller = new AbortController();
 
         async function fetchUser() {
             try {
                 setError(false);
                 const response = await axios.get("http://localhost:8080/users/me", { headers: {
-                        "Authorization":  "Bearer " + keycloak.token, signal: controller.signal
-                    }});
-                setCurrentUser(response.data.results);
+                        "Authorization":  "Bearer " + auth.kc.token}, signal: controller.signal
+                    });
+                console.log(response.data)
+                setCurrentUser(response.data);
             } catch (e) {
                 console.error(e);
                 setError(true);
@@ -40,26 +46,43 @@ function MyProfile() {
         return function cleanup() {
             controller.abort();
         }
-    }, );
+    }, [auth.kc]);
 
 
     const [selectStatus, setSelectStatus] = useState('Current');
 
     const [popupOpen, setPopupOpen] = useState(false);
-    const [activeTool, setActiveTool] = useState('');
-    const [activeHunt, setActiveHunt] = useState('');
+    const [activeTool, setActiveTool] = useState(null);
+    const [activeTarget, setActiveTarget] = useState(null);
+    const [activeTargetType, setActiveTargetType] = useState(null);
 
     const handleSelect = (status) => {
         setSelectStatus(status);
     };
 
+    const USER_TOOLS = {
+        DELETE: 'delete',
+        EDIT: 'edit'
+    };
+
+    const openPopup = (tool, targetType, target) => {
+        setActiveTool(tool);
+        setActiveTargetType(targetType);
+        setActiveTarget(target);
+        setPopupOpen(true);
+    };
+
     return (
         <>
-            <div><h1>HEY username.</h1><PopupTools
-                open={popupOpen}
-                toolManager={activeTool}
-                hunt={activeHunt}
-                onClose={() => setPopupOpen(false)}/></div>
+            <div><h1>HEY {currentUser?.username}.</h1>
+
+                <PopupTools
+                    open={popupOpen}
+                    toolManager={activeTool}
+                    target={activeTarget}
+                    targetType={activeTargetType}
+                    onClose={() => setPopupOpen(false)}
+                /></div>
 
             <div className="fullProfilePageBox">
                 <div className="profileBox">
@@ -68,15 +91,16 @@ function MyProfile() {
                             user={currentUser}
                             avatarSize='big'
                         />
+                        <div className="editProfileBox"><img src={EditIcon} alt="Edit icon"/></div>
                     </div>
+
                     <div className="textFieldsBox">
-                        <div className="basicTextbox"><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                            Accusantium asperiores excepturi inventore ipsa nesciunt odio optio reiciendis sequi veniam?
-                            Ab culpa, facere illum molestiae necessitatibus unde. Labore placeat repellendus
-                            voluptates!</p></div>
-                        <div className="basicTextbox"><p>Textbox</p></div>
-                        <div className="basicTextbox"><p>Textbox</p></div>
-                        <div className="basicTextbox"><p>Textbox</p></div>
+                        <div className="basicTextbox"><p>{currentUser?.profile.profileText}</p></div>
+                        <div className="basicTextbox"><p>{currentUser?.profile.twitchUrl}</p></div>
+                        <div className="basicTextbox"><p>{currentUser?.profile.youtubeUrl}</p></div>
+                        <div className="basicTextbox"><p>{currentUser?.profile.discordUrl}</p></div>
+
+                        <div className="editProfileBox"><img src={EditIcon} alt="Edit icon" onClick={() => openPopup(USER_TOOLS.EDIT, 'user', currentUser)}/></div>
                     </div>
                 </div>
                 <div className="huntProfileContainer">
@@ -101,15 +125,21 @@ function MyProfile() {
                         </div>
 
                         <div className="personalHunts">
-                            {currentUser?.map(hunts => (
+                            {currentUser?.hunts.map(hunts => (
                                 <div key={hunts?.id} className="personalHuntsBox">
-                                    <HorizontalCardMini
+                                    {/*<HorizontalCardMini*/}
+                                    {/*    hunt={hunts}*/}
+                                    {/*    onToolClick={(toolManager, hunts) => {*/}
+                                    {/*        setActiveTool(toolManager);*/}
+                                    {/*        setActiveHunt(hunts);*/}
+                                    {/*        setPopupOpen(true);*/}
+                                    {/*    }}/>*/}
+                                    <SquareCard
                                         hunt={hunts}
-                                        onToolClick={(toolManager, hunts) => {
-                                            setActiveTool(toolManager);
-                                            setActiveHunt(hunts);
-                                            setPopupOpen(true);
-                                        }}/>
+                                        onToolClick={(tool, huntTarget) => {
+                                            openPopup(tool, 'hunt', huntTarget);
+                                        }}
+                                    />
                                 </div>
                             ))}
                         </div>

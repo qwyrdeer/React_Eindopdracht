@@ -1,34 +1,62 @@
-import { useEffect, useState } from "react";
-import keycloak from "./keycloak";
+import { createContext, useState, useEffect } from 'react';
+import Keycloak from 'keycloak-js';
+
+// eslint-disable-next-line react-refresh/only-export-components
+export const AuthContext = createContext();
 
 export default function AuthProvider({ children }) {
-
-    //moeten false zijn
-    const [keycloakReady, setKeycloakReady] = useState(false);
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [auth, setAuth] = useState({ isAuth: false });
 
     useEffect(() => {
+        const checkToken = async () => {
+            try {
+                const kc = new Keycloak({
+                    url: 'http://localhost:9090',
+                    realm: 'galacticEndgame',
+                    clientId: 'galactic-frontend'
+                });
 
-        keycloak.init({
-            onLoad: "check-sso",
-            pkceMethod: "S256"
-        }).then(authenticated => {
+                await kc.init({ onLoad: 'check-sso' });
 
-            setIsAuthenticated(authenticated);
-            setKeycloakReady(true);
+                if (kc.authenticated) {
 
-            if (authenticated) {
-                console.log("Logged in");
-                console.log(keycloak.token);
+                    await kc.updateToken(60);
+
+                    await fetch("http://localhost:8080/users/me", {
+                        method: "GET",
+                        headers: {
+                            Authorization: `Bearer ${kc.token}`
+                        }
+                    });
+                }
+                setAuth({
+                    isAuth: kc.authenticated,
+                    token: kc.token,
+                    kc: kc
+                });
+
+            } catch (error) {
+                console.error('Auth check failed:', error);
+                setAuth({ isAuth: false });
             }
+        };
 
-        });
-
+        checkToken();
     }, []);
 
-    if (!keycloakReady) {
-        return <div>Loading authentication...</div>;
-    }
+    const login = () => {
+        auth.kc?.login();
+        setAuth({ isAuth: true });
+    };
 
-    return children;
+    const logout = () => {
+        auth.kc?.logout();
+        setAuth({ isAuth: false });
+    };
+
+    return (
+        <AuthContext.Provider value={{ auth, logout, login }}>
+            {children}
+        </AuthContext.Provider>
+    );
 }
