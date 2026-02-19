@@ -13,8 +13,22 @@ function ManageCommunity() {
     const [popupOpen, setPopupOpen] = useState(false);
     const [activeTool, setActiveTool] = useState('');
     const [activeTarget, setActiveTarget] = useState('');
+    const [activeTargetType, setActiveTargetType] = useState(null);
     const [userList, setUserList] = useState([])
     const [error, setError] = useState(false);
+
+    const USER_TOOLS = {
+        DELETE: 'delete',
+        BLOCK: 'block',
+        EDIT: 'edit'
+    };
+
+    const openPopup = (tool, targetType, target) => {
+        setActiveTool(tool);
+        setActiveTargetType(targetType);
+        setActiveTarget(target);
+        setPopupOpen(true);
+    };
 
     useEffect(() => {
         if (!auth.kc) return;
@@ -46,6 +60,7 @@ function ManageCommunity() {
                      open={popupOpen}
                      toolManager={activeTool}
                      target={activeTarget}
+                     targetType={activeTargetType}
                      onClose={() => setPopupOpen(false)}/>
                     </div>
             <div className="fullManageCommunityPageBox">
@@ -54,10 +69,8 @@ function ManageCommunity() {
                         <UserManagementBlock
                             target={user}
                             avatarSize='normal'
-                            onToolClick={(toolManager, user) => {
-                                setActiveTool(toolManager);
-                                setActiveTarget(user);
-                                setPopupOpen(true);
+                            onToolClick={(tool, target) => {
+                                openPopup(tool, 'user', target);
                             }}
                         />
                     </div>

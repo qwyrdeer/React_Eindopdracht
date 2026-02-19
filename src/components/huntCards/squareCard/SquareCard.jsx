@@ -1,6 +1,6 @@
 import './SquareCard.css';
 
-import React, {useMemo, useState} from "react";
+import React, {useContext, useMemo, useState} from "react";
 
 import FlipIcon from '../../../assets/Icons/SVG/FlipIcon.svg';
 import AvatarIcon from "../../avatar/AvatarIcon.jsx";
@@ -8,8 +8,13 @@ import DeleteIcon from "../../../assets/Icons/SVG/DeleteIcon.svg";
 import EditIconWhite from "../../../assets/Icons/SVG/EditIconWhite.svg";
 import NotShinyIcon from '../../../assets/Icons/SVG/NotShinyYet.svg'
 import ShinyIcon from "../../../assets/Icons/SVG/ShinyIcon.svg";
+import {AuthContext} from "../../../auth/AuthProvider.jsx";
 
 function SquareCard({hunt, onToolClick}) {
+
+    const { auth } = useContext(AuthContext);
+    const isAdmin = auth.kc?.tokenParsed?.resource_access?.galacticEndgame?.roles?.includes("ROLE_ADMIN");
+    const isOwner = auth.kc?.tokenParsed?.preferred_username === hunt.user.username;
 
     const cardClasses = [
         'squareBackground1',
@@ -24,7 +29,7 @@ function SquareCard({hunt, onToolClick}) {
     };
 
     const HUNT_STATUS_MAP = {
-        PAST: { label: 'Recently hunted', icon: ShinyIcon },
+        FINISHED: { label: 'Recently hunted', icon: ShinyIcon },
         CURRENT: { label: 'Hunted right now', icon: NotShinyIcon },
         FUTURE: { label: 'To hunt', icon: NotShinyIcon }
     };
@@ -53,7 +58,7 @@ function SquareCard({hunt, onToolClick}) {
                                     <div className="statusBox">
                                         <h3>{hunt.huntStatus}</h3>
                                         <div className="statusIcon">
-                                            <img src={status?.icon} alt={hunt.huntStatus.label}/>
+                                            <img src={status?.icon} alt={status?.label}/>
                                         </div>
                                     </div>
                                     <div className="huntContainer">
@@ -89,26 +94,26 @@ function SquareCard({hunt, onToolClick}) {
                                         </div>
                                     </div>
                                     <div className="huntContainerBack">
-                                        {hunt.createDate === '' ? <p>No encounters yet</p> :
-                                            <h2>{hunt.finishDate === '' ? 'Currently' : 'Hunt took'} {hunt.encounters} encounters</h2>}
-                                        {hunt.finishDate === '' ? <p>Hunting in {hunt.usedGame}</p> :
-                                            <p>Hunted in {hunt.usedGame}</p>}
+                                        {hunt.huntStatus === 'FUTURE' ? <p>No {hunt.huntMethod} encounters yet</p> :
+                                            <h2>{hunt.huntStatus === 'FINISHED' ? 'Hunt took' : 'Currently'} {hunt.encounters} {hunt.huntMethod} encounters</h2>}
+                                        {hunt.huntStatus === 'FINISHED' ? <p>Hunted in {hunt?.usedGame}</p> : <p>Hunting in {hunt?.usedGame}</p>}
                                     </div>
 
                                     <div className="infoContainerBack">
-                                        {hunt.createDate === '' ? <p>Hunt not yet started</p> :
+                                        {hunt.huntStatus === 'FUTURE' ? <p>Hunt not yet started</p> :
                                             <p> Started: {hunt.createDate}</p>}
-                                        {hunt.finishDate === '' ?
-                                            <p>{hunt.createDate === '' ? '' : 'Not yet finished'}</p> :
-                                            <p>Finished: {hunt.finishDate}</p>}
+                                        {hunt.huntStatus === 'FINISHED' ?
+                                            <p>Finished: {hunt.finishDate}</p> :
+                                            <p>{hunt.createDate === '' ? '' : 'Not yet finished'}</p>}
                                     </div>
+                                    {(isAdmin || isOwner) && (
                                     <div className="toolIconBoxSC">
                                         <div className="iconSizerSC"
                                              onClick={() => onToolClick(USER_TOOLS.DELETE, hunt)}><img src={DeleteIcon} alt="Delete icon"/>
                                         </div>
                                         <div className="iconSizerSC" onClick={() => onToolClick(USER_TOOLS.EDIT, hunt)}>
                                             <img src={EditIconWhite} alt="Edit icon"/></div>
-                                    </div>
+                                    </div>)}
                                     <div className="flipBoxBack" onClick={() => setIsFlipped(!isFlipped)}>
                                         <div className="iconSizerSQ" ><img src={FlipIcon} alt="flip icon"/></div>
                                     </div>

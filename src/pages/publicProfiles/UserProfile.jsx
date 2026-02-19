@@ -6,14 +6,16 @@ import PopupTools from "../../components/popupTools/PopupTools.jsx";
 import AvatarIcon from "../../components/avatar/AvatarIcon.jsx";
 import EditIcon from "../../assets/Icons/SVG/EditIcon.svg";
 import TextOnlyButton from "../../components/button/TextOnlyButton/TextOnlyButton.jsx";
-import SquareCard from "../../components/huntCards/squareCard/SquareCard.jsx";
 import ShinyIcon from "../../assets/Icons/SVG/ShinyIcon.svg";
 import NotShinyIcon from "../../assets/Icons/SVG/NotShinyYet.svg";
+import HorizontalCardMini from "../../components/huntCards/horizontalCard/HorizontalCardMini/HorizontalCardMini.jsx";
 
 function UserProfile() {
     const { username } = useParams();
 
     const { auth } = useContext(AuthContext);
+    const isAdmin = auth.kc?.tokenParsed?.resource_access?.galacticEndgame?.roles?.includes("ROLE_ADMIN");
+    const isOwner = auth.kc?.tokenParsed?.preferred_username === username;
 
     const [user, setUser] = useState(null);
 
@@ -27,6 +29,19 @@ function UserProfile() {
     const [popupOpen, setPopupOpen] = useState(false);
     const [activeTool, setActiveTool] = useState('');
     const [activeTarget, setActiveTarget] = useState('');
+    const [activeTargetType, setActiveTargetType] = useState(null);
+
+    const USER_TOOLS = {
+        DELETE: 'delete',
+        EDIT: 'edit'
+    };
+
+    const openPopup = (tool, targetType, target) => {
+        setActiveTool(tool);
+        setActiveTargetType(targetType);
+        setActiveTarget(target);
+        setPopupOpen(true);
+    };
 
     const handleSelect = (status) => {
         setSelectStatus(status);
@@ -58,7 +73,9 @@ function UserProfile() {
                 open={popupOpen}
                 toolManager={activeTool}
                 target={activeTarget}
-                onClose={() => setPopupOpen(false)}/></div>
+                targetType={activeTargetType}
+                onClose={() => setPopupOpen(false)}
+            /></div>
 
             <div className="fullProfilePageBox">
                 <div className="profileBox">
@@ -75,7 +92,8 @@ function UserProfile() {
                         <div className="basicTextbox"><p>{user?.profile?.youtubeUrl}</p></div>
                         <div className="basicTextbox"><p>{user?.profile?.discordUrl}</p></div>
 
-                        <div className="editProfileBox"><img src={EditIcon} alt="Edit icon"/></div>
+                        {(isAdmin || isOwner) && (
+                        <div className="editProfileBox"><img src={EditIcon} alt="Edit icon" onClick={() => openPopup(USER_TOOLS.EDIT, 'profile', user)}/></div>)}
                     </div>
                 </div>
                 <div className="huntProfileContainer">
@@ -83,9 +101,9 @@ function UserProfile() {
                         <div><h1>my hunts.</h1></div>
                         <div className='buttonHuntBox'>
                             <TextOnlyButton
-                                buttonName='Past'
-                                buttonStyle={`greenButton ${selectStatus === 'Past' ? 'active' : ''}`}
-                                onClick={() => handleSelect('Past')}
+                                buttonName='Finished'
+                                buttonStyle={`greenButton ${selectStatus === 'Finished' ? 'active' : ''}`}
+                                onClick={() => handleSelect('Finished')}
                                 type='button'/>
                             <TextOnlyButton
                                 buttonName='Current'
@@ -102,20 +120,11 @@ function UserProfile() {
                         <div className="personalHunts">
                             {user?.hunts?.map(hunts => (
                                 <div key={hunts?.id} className="personalHuntsBox">
-                                    {/*<HorizontalCardMini*/}
-                                    {/*    hunt={hunts}*/}
-                                    {/*    onToolClick={(toolManager, hunts) => {*/}
-                                    {/*        setActiveTool(toolManager);*/}
-                                    {/*        setActiveHunt(hunts);*/}
-                                    {/*        setPopupOpen(true);*/}
-                                    {/*    }}/>*/}
-                                    <SquareCard
-                                        hunt = {hunts}
-                                        onToolClick={(toolManager, hunts) => {
-                                            setActiveTool(toolManager);
-                                            setActiveTarget(hunts);
-                                            setPopupOpen(true);}}
-                                    />
+                                    <HorizontalCardMini
+                                        hunt={hunts}
+                                        onToolClick={(tool, huntTarget) => {
+                                            openPopup(tool, 'hunt', huntTarget);
+                                        }}/>
                                 </div>
                             ))}
                         </div>

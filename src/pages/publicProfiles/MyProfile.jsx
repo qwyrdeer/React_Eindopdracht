@@ -15,7 +15,7 @@ function MyProfile() {
     const { auth } = useContext(AuthContext);
 
     const Status = Object.freeze({
-        PAST: {label: 'Recently hunted', icon: ShinyIcon},
+        FINISHED: {label: 'Recently hunted', icon: ShinyIcon},
         CURRENT: {label: 'Hunted right now', icon: NotShinyIcon},
         FUTURE: {label: 'To hunt', icon: NotShinyIcon}
     });
@@ -91,7 +91,6 @@ function MyProfile() {
                             user={currentUser}
                             avatarSize='big'
                         />
-                        <div className="editProfileBox"><img src={EditIcon} alt="Edit icon"/></div>
                     </div>
 
                     <div className="textFieldsBox">
@@ -100,7 +99,7 @@ function MyProfile() {
                         <div className="basicTextbox"><p>{currentUser?.profile.youtubeUrl}</p></div>
                         <div className="basicTextbox"><p>{currentUser?.profile.discordUrl}</p></div>
 
-                        <div className="editProfileBox"><img src={EditIcon} alt="Edit icon" onClick={() => openPopup(USER_TOOLS.EDIT, 'user', currentUser)}/></div>
+                        <div className="editProfileBox"><img src={EditIcon} alt="Edit icon" onClick={() => openPopup(USER_TOOLS.EDIT, 'profile', currentUser)}/></div>
                     </div>
                 </div>
                 <div className="huntProfileContainer">
@@ -108,9 +107,9 @@ function MyProfile() {
                         <div><h1>my hunts.</h1></div>
                         <div className='buttonHuntBox'>
                             <TextOnlyButton
-                                buttonName='Past'
-                                buttonStyle={`greenButton ${selectStatus === 'Past' ? 'active' : ''}`}
-                                onClick={() => handleSelect('Past')}
+                                buttonName='Finished'
+                                buttonStyle={`greenButton ${selectStatus === 'Finished' ? 'active' : ''}`}
+                                onClick={() => handleSelect('Finished')}
                                 type='button'/>
                             <TextOnlyButton
                                 buttonName='Current'
@@ -127,19 +126,11 @@ function MyProfile() {
                         <div className="personalHunts">
                             {currentUser?.hunts.map(hunts => (
                                 <div key={hunts?.id} className="personalHuntsBox">
-                                    {/*<HorizontalCardMini*/}
-                                    {/*    hunt={hunts}*/}
-                                    {/*    onToolClick={(toolManager, hunts) => {*/}
-                                    {/*        setActiveTool(toolManager);*/}
-                                    {/*        setActiveHunt(hunts);*/}
-                                    {/*        setPopupOpen(true);*/}
-                                    {/*    }}/>*/}
-                                    <SquareCard
+                                    <HorizontalCardMini
                                         hunt={hunts}
                                         onToolClick={(tool, huntTarget) => {
                                             openPopup(tool, 'hunt', huntTarget);
-                                        }}
-                                    />
+                                        }}/>
                                 </div>
                             ))}
                         </div>

@@ -6,9 +6,6 @@ import {AuthContext} from "../../auth/AuthProvider.jsx";
 
 function AvatarIcon({user, avatarSize}) {
 
-    console.log('User object:', user);
-    console.log('Avatar URL:', `http://localhost:8080${user?.userAvatarUrl}`);
-
     const { auth } = useContext(AuthContext);
 
     let sizeClass = '';

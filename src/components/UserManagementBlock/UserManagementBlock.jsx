@@ -7,12 +7,6 @@ import AvatarIcon from "../avatar/AvatarIcon.jsx";
 
 function UserManagementBlock({ target, onToolClick }) {
 
-    const USER_TOOLS = {
-        DELETE: 'delete',
-        BLOCK: 'block',
-        EDIT: 'edit'
-    };
-
     let boxStyling = 'userManagementBox';
 
     switch (target.user?.userRole) {
@@ -22,6 +16,12 @@ function UserManagementBlock({ target, onToolClick }) {
         default:
             break;
     }
+
+    const USER_TOOLS = {
+        DELETE: 'delete',
+        BLOCK: 'block',
+        EDIT: 'edit'
+    };
 
     // switch (target.block) {
     //     case 'Blocked':
